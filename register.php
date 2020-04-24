@@ -1,8 +1,8 @@
 <?php
-require 'require/database.php';
+require 'database.php';
 include "require/header.php";
 
-$pseudoPlaceholder = "Pseudo";
+$usernamePlaceholder = "Pseudo";
 $emailPlaceholder = "Adresse email";
 $passwordPlaceholder = "Mot de passe";
 
@@ -14,11 +14,13 @@ if (!empty($_POST)){
 
     $errors = array();
 
+    // =========================================== Erreurs Formulaire =========================================== //
+
     // Si le input pseudo est vide
 
     if (empty($_POST['username'])){
         $errors['username'] = "Pseudo vide";
-        $pseudoPlaceholder = "Veuillez entrer un pseudo"
+        $usernamePlaceholder = "Veuillez entrer un pseudo"
         ?><style>
             .usernameInput::placeholder {color: red; font-style: italic}
         </style><?php
@@ -28,7 +30,7 @@ if (!empty($_POST)){
 
     else if(!preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])){
         $errors['username'] = "Pseudo invalide";
-        $pseudoPlaceholder = "Uniquement des lettres et des chiffres"
+        $usernamePlaceholder = "Uniquement des lettres et des chiffres"
         ?><style>
             .usernameInput::placeholder {color: red; font-style: italic}
         </style><?php
@@ -37,14 +39,14 @@ if (!empty($_POST)){
     // Si le pseudo a déjà été enregistré/utilisé
 
     else {
-        $req = $conn->prepare('SELECT id FROM users WHERE username = ?');
-        $req->bind_param("s", $_POST['username']);
-        $req->execute();
-        $user = $req->fetch();
-        $req->close();
+        $stmt = $conn->prepare('SELECT id FROM users WHERE username = ?');
+        $stmt->bind_param("s", $_POST['username']);
+        $stmt->execute();
+        $user = $stmt->fetch();
+        $stmt->close();
         if($user){
             $errors['username'] = "Pseudo déjà pris";
-            $pseudoPlaceholder = "Votre pseudo est déjà utilisé";
+            $usernamePlaceholder = "Votre pseudo est déjà utilisé";
             ?><style>
                 .usernameInput::placeholder {color: red; font-style: italic}
             </style><?php
@@ -74,11 +76,11 @@ if (!empty($_POST)){
     // Si l'email est déjà utilisé
 
     else {
-            $req = $conn->prepare('SELECT id FROM users WHERE email = ?');
-            $req->bind_param("s", $_POST['email']);
-            $req->execute();
-            $mail = $req->fetch();
-            $req->close();
+            $stmt = $conn->prepare('SELECT id FROM users WHERE email = ?');
+            $stmt->bind_param("s", $_POST['email']);
+            $stmt->execute();
+            $mail = $stmt->fetch();
+            $stmt->close();
             if($mail){
                 $errors['username'] = "Email est déjà utilisé";
                 $emailPlaceholder = "Cet email est déjà utilisé";
@@ -108,7 +110,9 @@ if (!empty($_POST)){
         </style><?php
     }
 
-    // Si il n'y a pas d'erreur -> envoi les infos à la db
+    // =========================================== Formulaire Correct =========================================== //
+
+    // Pas d'erreur -> envoi les infos à la db & ouvre la session
 
     if (empty($errors)){
 
@@ -119,22 +123,17 @@ if (!empty($_POST)){
         $stmt = $conn->prepare("INSERT INTO users (id, username, email, password) VALUES (NULL , ?, ?, ?)");
         $stmt->bind_param("sss", $username, $email, $passwordHash);
         $stmt->execute();
+        $stmt->close();
 
-        // ouvre une session
-
-        $req = $conn->prepare('SELECT id FROM users WHERE id = ?');
-        $req->bind_param("s", $_POST['id']);
-        $req->execute();
-        $userID = $req->fetch();
-
-        var_dump($userID);
+        session_start();
+        $_SESSION['username'] = $username;
+        header('Location: profil.php');
     }
 }
 
 
 ?>
 
-<html lang="fr">
 <body style="overflow: hidden">
 <div class="viewportLogParent">
     
@@ -146,19 +145,19 @@ if (!empty($_POST)){
 
         <form action="" method="POST">
 
-            <div class="form-group">
-                <input type="text" class="usernameInput" name="username" placeholder= " <?= $pseudoPlaceholder ?> ">
+            <div class="logForm">
+                <input type="text" class="usernameInput" name="username" placeholder= " <?= $usernamePlaceholder ?> ">
             </div>
 
-            <div class="form-group">
+            <div class="logForm">
                 <input type="text" class="emailInput" name="email" placeholder="<?= $emailPlaceholder ?>">
             </div>
 
-            <div class="form-group">
+            <div class="logForm">
                 <input type="password" class="passwordInput" name="password" placeholder="<?= $passwordPlaceholder ?>"/>
             </div>
 
-            <div class="form-group">
+            <div class="logForm">
                 <input type="password" class="passwordInput" name="passwordConfirm" placeholder="<?= $passwordPlaceholder ?>">
             </div>
 
@@ -171,5 +170,4 @@ if (!empty($_POST)){
 </div>
 
 </body>
-</html>
 

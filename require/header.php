@@ -1,4 +1,10 @@
-<html lang="fr">
+<?php
+    if (session_status() == PHP_SESSION_NONE)
+    {
+        session_start();
+    }
+?>
+
 <head>
     <title>Test</title>
     <link href="../css/style.css" rel="stylesheet">
@@ -7,14 +13,22 @@
 </head>
 <body>
 
-<div id="navbar">
-    <img src="../pictures/camera.png" height="40px" width="40px">
-    <div>
-    <a href="">Profil</a>
-    <a href="">Rechercher</a>
-    <a href="">Ajouter</a>
-    </div>
-</div>
+<?php
+
+    if (isset($_SESSION['username'])){
+        ?>
+        <div id="navbar">
+            <img src="../pictures/camera.png" height="40px" width="40px">
+            <div>
+                <a href="">Profil</a>
+                <a href="">Rechercher</a>
+                <a href="">Ajouter</a>
+                <a href="../logout.php">Se déconnecter</a>
+            </div>
+        </div>
+        <?php
+    }
+
+?>
 
 </body>
-</html>

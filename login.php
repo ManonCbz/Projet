@@ -1,9 +1,12 @@
 <?php
 require 'require/header.php';
-require 'require/database.php';
+require 'database.php';
+
+$usernamePlaceholder = "Pseudo";
+$passwordPlaceholder = "Mot de passe";
+
 ?>
 
-<html lang="fr">
 <body style="overflow: hidden">
 <div class="viewportLogParent">
 
@@ -14,12 +17,12 @@ require 'require/database.php';
 
         <form action="" method="POST">
 
-            <div class="form-group">
-                <input type="text" name="email" placeholder="Adresse email">
+            <div class="logForm">
+                <input type="text" name="username" placeholder="<?= $usernamePlaceholder ?>">
             </div>
 
-            <div class="form-group">
-                <input type="password" name="password" placeholder="Mot de passe"/>
+            <div class="logForm">
+                <input type="password" name="password" placeholder="<?= $passwordPlaceholder ?>"/>
             </div>
 
             <button type="submit" class="buttonLog">Se connecter</button>
