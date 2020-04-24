@@ -1,6 +1,6 @@
 <?php
-require 'header.php';
-require 'database.php';
+require 'require/header.php';
+require 'require/database.php';
 ?>
 
 <html lang="fr">
