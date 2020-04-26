@@ -1,6 +1,6 @@
 <?php
 require 'database.php';
-include "require/header.php";
+include "header.php";
 
 $usernamePlaceholder = "Pseudo";
 $emailPlaceholder = "Adresse email";
@@ -133,7 +133,12 @@ if (!empty($_POST)){
 
 
 ?>
-
+<head>
+    <title>Test</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina+2|Satisfy&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+</head>
 <body style="overflow: hidden">
 <div class="viewportLogParent">
     

@@ -1,9 +1,24 @@
 <?php
-require 'require/header.php';
+require 'header.php';
 require 'database.php';
 
 $usernamePlaceholder = "Pseudo";
 $passwordPlaceholder = "Mot de passe";
+
+if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
+    $stmt = $conn->prepare('SELECT * FROM users WHERE username = :username');
+    $stmt->execute(['username' => $_POST['username']]);
+    $user = $stmt->fetch();
+
+    if(password_verify($_POST['password'], $user->password)){
+        $_SESSION['username'] = $user;
+        header('Location: profil.php');
+    }
+    else
+    {
+        $passwordPlaceholder = "Mot de passe incorrect";
+    }
+}
 
 ?>
 

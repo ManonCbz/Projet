@@ -1,2 +1,2 @@
 <?php
-require 'require/header.php';
+require 'header.php';
