@@ -6,17 +6,28 @@ $usernamePlaceholder = "Pseudo";
 $passwordPlaceholder = "Mot de passe";
 
 if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
-    $stmt = $conn->prepare('SELECT * FROM users WHERE username = :username');
-    $stmt->execute(['username' => $_POST['username']]);
-    $user = $stmt->fetch();
 
-    if(password_verify($_POST['password'], $user->password)){
-        $_SESSION['username'] = $user;
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+    $stmt->bind_param("s", $_POST['username']);
+    $stmt->execute();
+    $user = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
+
+    if ($user && password_verify($_POST['password'], $user['password'])) {
+        $username = $_POST['username'];
+        $_SESSION['username'] = $username;
+        echo $_SESSION['username'];
         header('Location: profil.php');
     }
-    else
-    {
-        $passwordPlaceholder = "Mot de passe incorrect";
+
+    else {
+        ?>
+            <style>
+                .error {
+                    display: block;
+                }
+            </style>
+        <?php
     }
 }
 
@@ -30,6 +41,8 @@ if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
     <div class="viewportLog">
         <img src="pictures/camera.png" height="80px" width="80px">
 
+        <div class="error"> ● Identifiant ou mot de passe incorrect </div>
+
         <form action="" method="POST">
 
             <div class="logForm">
@@ -37,7 +50,7 @@ if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
             </div>
 
             <div class="logForm">
-                <input type="password" name="password" placeholder="<?= $passwordPlaceholder ?>"/>
+                <input type="password" name="password" placeholder="<?= $passwordPlaceholder ?>"/><br>
             </div>
 
             <button type="submit" class="buttonLog">Se connecter</button>

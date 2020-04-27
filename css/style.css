@@ -53,12 +53,29 @@ body{
     padding-bottom: 20px;
 }
 
+input:focus {
+    outline:none;
+}
+
+.error {
+    display: none;
+    font-size: 85%;
+    color: red;
+    margin: 10px;
+}
+
+.forgetPassword{
+    font-size: 12px;
+    margin-left: 120px;
+    text-decoration: none;
+}
+
 .buttonLog {
     border: none;
     background: none;
     font-family: 'Satisfy', cursive;
     font-size: 25px;
-    padding: 20px;
+    padding: 25px;
 }
 
 .buttonLog:hover{
@@ -93,6 +110,8 @@ body{
     outline-style: none;
     text-shadow: #787878 2px 1px 2px;
 }
+
+
 
 @media (max-width: 480px) {
 

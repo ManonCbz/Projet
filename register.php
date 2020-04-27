@@ -12,9 +12,16 @@ $userID = "";
 
 if (!empty($_POST)){
 
+    // =========================================== Erreurs Formulaire =========================================== //
+
+    // Je crée un tableau pour contenir les erreurs possible dans le formulaire
+
     $errors = array();
 
-    // =========================================== Erreurs Formulaire =========================================== //
+    // Pour chaque erreur :
+    // 1 - J'ajoute celle-ci dans mon tableau $errors
+    // 2 - Je modifie la variable placeholder & le CSS
+
 
     // Si le input pseudo est vide
 
@@ -110,6 +117,8 @@ if (!empty($_POST)){
         </style><?php
     }
 
+    var_dump($errors);
+
     // =========================================== Formulaire Correct =========================================== //
 
     // Pas d'erreur -> envoi les infos à la db & ouvre la session
@@ -118,9 +127,12 @@ if (!empty($_POST)){
 
         $username = $_POST['username'];
         $email = $_POST['email'];
+
+        // Je hache le mot de passe
+
         $passwordHash = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-        $stmt = $conn->prepare("INSERT INTO users (id, username, email, password) VALUES (NULL , ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $username, $email, $passwordHash);
         $stmt->execute();
         $stmt->close();
