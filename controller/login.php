@@ -1,10 +1,9 @@
 <?php
 
-require '../model/database.php';
 require '../controller/header.php';
 
 if(!empty($_SESSION['username'])){
-    header('Location: profil.php');
+    header('Location: profile.php');
 }
 
 $usernamePlaceholder = "Pseudo";
@@ -20,7 +19,7 @@ if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
 
     if ($user && password_verify($_POST['password'], $user['password'])) {
         $_SESSION['username'] = $_POST['username'];
-        header('Location: profil.php');
+        header('Location: profile.php');
     }
 
     else {

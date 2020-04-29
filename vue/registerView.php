@@ -1,10 +1,10 @@
 <body style="overflow: hidden">
 <div class="viewportLogParent">
 
-    <img class="imageHome" src="../vue/pictures/photoacceuil.jpg" height="100%" width="49%">
+    <img alt="Photo" class="imageHome" src="../vue/pictures/log-picture.jpg" height="100%" width="49%">
 
     <div class="viewportLog">
-        <img src="../vue/pictures/camera.png" height="80px" width="80px">
+        <img alt="Spot photo" src="../vue/pictures/log-camera.png" height="80px" width="80px">
 
 
         <form action="" method="POST">

@@ -1,5 +1,7 @@
 <?php
 
+include '../model/database.php';
+
 if (session_status() == PHP_SESSION_NONE) {
         session_start();
  }
@@ -19,12 +21,15 @@ if (session_status() == PHP_SESSION_NONE) {
     if (isset($_SESSION['username'])){
         ?>
         <div id="navbar">
-            <img src="../vue/pictures/camera.png" height="40px" width="40px">
-            <div>
-                <a href="">Profil</a>
+            <img alt="logo" class="logo" src="../vue/pictures/log-camera.png" height="40px" width="40px">
+            <div class="linkNavbar">
+                <a href="profile.php">Profil</a>
                 <a href="">Rechercher</a>
                 <a href="">Ajouter</a>
-                <a href="logout.php">Se déconnecter</a>
+            </div>
+            <div class="iconNavbar">
+                <a href="setting.php"><img class="iconNavbar" alt="Paramètres" src="../vue/pictures/icon-settings.png"></a>
+                <a href="logout.php"><img class="iconNavbar" alt="Se déconnecter" src="../vue/pictures/icon-logout.png"></a>
             </div>
         </div>
         <?php

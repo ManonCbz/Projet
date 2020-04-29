@@ -4,27 +4,6 @@ body{
     font-family: 'Baloo Bhaina 2', cursive;
 }
 
-/* ================================= Header ================================= */
-
-#navbar{
-    width: 100%;
-    height: 70px;
-    background: #adadad;
-    text-align: right;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#navbar * {
-    margin: 0 70px;
-}
-
-#navbar a{
-    text-decoration: none;
-    color: black;
-}
-
 /* ================================= Log & Register ================================= */
 
 .viewportLogParent {
@@ -111,6 +90,76 @@ input:focus {
     text-shadow: #787878 2px 1px 2px;
 }
 
+/* ================================= Header ================================= */
+
+#navbar{
+    width: 100%;
+    height: 70px;
+    background: #adadad;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#navbar a{
+    text-decoration: none;
+    color: black;
+    margin-right: 10px;
+}
+
+.logo{
+    margin-left: 50px;
+}
+
+.linkNavbar{
+    margin-left: 100vh;
+}
+
+.linkNavbar *{
+    margin: 0 90px;
+}
+
+.iconNavbar {
+    height: 25px;
+    margin: -7px 15px;
+}
+
+/* ================================= Footer ================================= */
+
+#navbarFooter{
+    display: none;
+}
+
+/* ================================= Profile ================================= */
+
+#bodyProfile{
+    overflow: hidden;
+}
+
+#profilViewport{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5vw;
+    text-align: center;
+}
+
+.profilePresentation{
+    width: 20%;
+    border: 1px solid black;
+    height: 70vh;
+}
+
+.profilePresentation p {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.profilePictures{
+    width: 65%;
+    border: 1px solid black;
+    min-height: 70vh;
+}
 
 
 @media (max-width: 480px) {
@@ -139,4 +188,70 @@ input:focus {
         height: 5vh;
         width: 70vw;
     }
+
+    /* ================================= Header ================================= */
+
+    .linkNavbar {
+        display: none;
+    }
+
+    .logo{
+        margin-left: 20px;
+    }
+
+    .iconNavbar {
+        margin: 0 0;
+        display: inline-block;
+    }
+
+    /* ================================= Footer ================================= */
+
+    #navbarFooter{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 10vh;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background: #e8e8e8;
+    }
+
+    #navbarFooter img{
+        height: 25px;
+    }
+
+    /* ================================= Profil ================================= */
+
+    #bodyProfile{
+        overflow: auto;
+        margin-bottom: 55px;
+    }
+
+    #profilViewport{
+        display: block;
+    }
+
+    .profilePresentation{
+        width: 100%;
+        height: 25vh;
+    }
+
+    .profilePresentation h1{
+        font-size: 15px;
+        text-align: right;
+        margin: 0 30px;
+    }
+
+    .profilePresentation p {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 10px;
+    }
+
+    .profilePictures{
+        width: 100%;
+        margin-top: 15px;
+    }
+
 }

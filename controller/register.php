@@ -1,9 +1,9 @@
 <?php
-require '../model/database.php';
+
 require '../controller/header.php';
 
 if(!empty($_SESSION['username'])){
-    header('Location: profil.php');
+    header('Location: profile.php');
 }
 
 $usernamePlaceholder = 'Pseudo';
@@ -141,7 +141,7 @@ if (!empty($_POST)){
 
         session_start();
         $_SESSION['username'] = $username;
-        header('Location: profil.php');
+        header('Location: profile.php');
     }
 }
 
