@@ -1,12 +1,16 @@
 <?php
-require 'database.php';
-include "header.php";
+require '../model/database.php';
+require '../controller/header.php';
 
-$usernamePlaceholder = "Pseudo";
-$emailPlaceholder = "Adresse email";
-$passwordPlaceholder = "Mot de passe";
+if(!empty($_SESSION['username'])){
+    header('Location: profil.php');
+}
 
-$userID = "";
+$usernamePlaceholder = 'Pseudo';
+$emailPlaceholder = 'Adresse email';
+$passwordPlaceholder = 'Mot de passe';
+
+$userID = '';
 
 // Si le formulaire (ci-dessous) est rempli
 
@@ -26,8 +30,8 @@ if (!empty($_POST)){
     // Si le input pseudo est vide
 
     if (empty($_POST['username'])){
-        $errors['username'] = "Pseudo vide";
-        $usernamePlaceholder = "Veuillez entrer un pseudo"
+        $errors['username'] = 'Pseudo vide';
+        $usernamePlaceholder = 'Veuillez entrer un pseudo';
         ?><style>
             .usernameInput::placeholder {color: red; font-style: italic}
         </style><?php
@@ -36,8 +40,8 @@ if (!empty($_POST)){
     // Si le pseudo contient un caractére spécial
 
     else if(!preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])){
-        $errors['username'] = "Pseudo invalide";
-        $usernamePlaceholder = "Uniquement des lettres et des chiffres"
+        $errors['username'] = 'Pseudo invalide';
+        $usernamePlaceholder = 'Uniquement des lettres et des chiffres';
         ?><style>
             .usernameInput::placeholder {color: red; font-style: italic}
         </style><?php
@@ -49,11 +53,11 @@ if (!empty($_POST)){
         $stmt = $conn->prepare('SELECT id FROM users WHERE username = ?');
         $stmt->bind_param("s", $_POST['username']);
         $stmt->execute();
-        $user = $stmt->fetch();
+        $user = $stmt->get_result()->fetch_assoc();
         $stmt->close();
         if($user){
-            $errors['username'] = "Pseudo déjà pris";
-            $usernamePlaceholder = "Votre pseudo est déjà utilisé";
+            $errors['username'] = 'Pseudo déjà pris';
+            $usernamePlaceholder = 'Votre pseudo est déjà utilisé';
             ?><style>
                 .usernameInput::placeholder {color: red; font-style: italic}
             </style><?php
@@ -63,8 +67,8 @@ if (!empty($_POST)){
     // Si le input mail est vide
 
     if (empty($_POST['email'])){
-        $errors['email'] = "Email vide";
-        $emailPlaceholder = "Veuillez entrer un email"
+        $errors['email'] = 'Email vide';
+        $emailPlaceholder = 'Veuillez entrer un email';
         ?><style>
             .emailInput::placeholder {color: red; font-style: italic}
         </style><?php
@@ -73,8 +77,8 @@ if (!empty($_POST)){
     // Si le mail est n'est pas valide
 
     elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-        $errors['email'] = "Email invalide";
-        $emailPlaceholder = "Cet email n'est pas valide"
+        $errors['email'] = 'Email invalide';
+        $emailPlaceholder = 'Cet email n\'est pas valide';
         ?><style>
             .emailInput::placeholder {color: red; font-style: italic}
         </style><?php
@@ -86,11 +90,11 @@ if (!empty($_POST)){
             $stmt = $conn->prepare('SELECT id FROM users WHERE email = ?');
             $stmt->bind_param("s", $_POST['email']);
             $stmt->execute();
-            $mail = $stmt->fetch();
+            $mail = $stmt->get_result()->fetch_assoc();
             $stmt->close();
             if($mail){
-                $errors['username'] = "Email est déjà utilisé";
-                $emailPlaceholder = "Cet email est déjà utilisé";
+                $errors['email'] = 'Email est déjà utilisé';
+                $emailPlaceholder = 'Cet email est déjà utilisé';
                 ?><style>
                     .emailInput::placeholder {color: red; font-style: italic}
                 </style><?php
@@ -100,8 +104,8 @@ if (!empty($_POST)){
     // Si le input mot de passe est vide
 
     if (empty($_POST['password'])){
-        $errors['password'] = "Mdp invalide";
-        $passwordPlaceholder = "Veuillez entrer un mot de passe"
+        $errors['password'] = 'Mdp invalide';
+        $passwordPlaceholder = 'Veuillez entrer un mot de passe';
         ?><style>
             .passwordInput::placeholder {color: red; font-style: italic}
         </style><?php
@@ -110,14 +114,12 @@ if (!empty($_POST)){
     // Si le mot de passe ne correspond pas à la confirmation
 
     else if ($_POST['password'] != $_POST['passwordConfirm']){
-        $errors['password'] = "Mdp ne correspond pas";
-        $passwordPlaceholder = "Mots de passe différents"
+        $errors['password'] = 'Mdp ne correspond pas';
+        $passwordPlaceholder = 'Mots de passe différents';
         ?><style>
             .passwordInput::placeholder {color: red; font-style: italic}
         </style><?php
     }
-
-    var_dump($errors);
 
     // =========================================== Formulaire Correct =========================================== //
 
@@ -143,48 +145,6 @@ if (!empty($_POST)){
     }
 }
 
+require('../vue/registerView.php');
 
 ?>
-<head>
-    <title>Test</title>
-    <link href="css/style.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina+2|Satisfy&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
-</head>
-<body style="overflow: hidden">
-<div class="viewportLogParent">
-    
-    <img class="imageHome" src="pictures/photoacceuil.jpg" height="100%" width="49%">
-
-    <div class="viewportLog">
-        <img src="pictures/camera.png" height="80px" width="80px">
-
-
-        <form action="" method="POST">
-
-            <div class="logForm">
-                <input type="text" class="usernameInput" name="username" placeholder= " <?= $usernamePlaceholder ?> ">
-            </div>
-
-            <div class="logForm">
-                <input type="text" class="emailInput" name="email" placeholder="<?= $emailPlaceholder ?>">
-            </div>
-
-            <div class="logForm">
-                <input type="password" class="passwordInput" name="password" placeholder="<?= $passwordPlaceholder ?>"/>
-            </div>
-
-            <div class="logForm">
-                <input type="password" class="passwordInput" name="passwordConfirm" placeholder="<?= $passwordPlaceholder ?>">
-            </div>
-
-            <button type="submit" class="buttonLog">M'inscrire</button>
-        </form>
-        <div id="changeButton">
-            <span>Déjà inscrit ? </span><a href="login.php"><button>Se connecter</button></a>
-        </div>
-    </div>
-</div>
-
-</body>
-

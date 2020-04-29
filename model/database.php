@@ -8,5 +8,5 @@ if($conn->connect_error)
 }
 else
 {
-    $conn->select_db("essai");
+    $conn->select_db("project-spot");
 }
