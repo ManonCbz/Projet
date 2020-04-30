@@ -1,4 +1,4 @@
-body{
+body {
     margin: 0;
     padding: 0;
     font-family: 'Baloo Bhaina 2', cursive;
@@ -12,14 +12,14 @@ body{
     box-shadow: 5px 5px 10px grey;
 }
 
-.viewportLog{
+.viewportLog {
     float: right;
     height: 100%;
     width: 50%;
     text-align: center;
 }
 
-.viewportLog input{
+.viewportLog input {
     margin: 8px;
     height: 4vh;
     width: 15vw;
@@ -27,13 +27,13 @@ body{
     border-bottom: 3px solid #adadad;
 }
 
-.viewportLog img{
+.viewportLog img {
     padding-top: 80px;
     padding-bottom: 20px;
 }
 
 input:focus {
-    outline:none;
+    outline: none;
 }
 
 .error {
@@ -43,7 +43,7 @@ input:focus {
     margin: 10px;
 }
 
-.forgetPassword{
+.forgetPassword {
     font-size: 12px;
     margin-left: 120px;
     text-decoration: none;
@@ -57,22 +57,22 @@ input:focus {
     padding: 25px;
 }
 
-.buttonLog:hover{
+.buttonLog:hover {
     color: #575757;
     cursor: pointer;
 }
 
-.buttonLog:active{
+.buttonLog:active {
     color: #535353;
     text-shadow: #9a9a9a 0.1em 0.1em 0.2em;
 }
 
-.buttonLog:focus{
+.buttonLog:focus {
     outline-style: none;
     text-shadow: #9a9a9a 0.1em 0.1em 0.2em;
 }
 
-#changeButton button{
+#changeButton button {
     border: none;
     background: none;
     font-family: 'Baloo Bhaina 2', cursive;
@@ -81,18 +81,18 @@ input:focus {
     cursor: pointer;
 }
 
-#changeButton button:hover{
+#changeButton button:hover {
     text-shadow: #787878 2px 1px 2px;
 }
 
-#changeButton button:focus{
+#changeButton button:focus {
     outline-style: none;
     text-shadow: #787878 2px 1px 2px;
 }
 
 /* ================================= Header ================================= */
 
-#navbar{
+#navbar {
     width: 100%;
     height: 70px;
     background: #adadad;
@@ -101,21 +101,21 @@ input:focus {
     align-items: center;
 }
 
-#navbar a{
+#navbar a {
     text-decoration: none;
     color: black;
     margin-right: 10px;
 }
 
-.logo{
+.logo {
     margin-left: 50px;
 }
 
-.linkNavbar{
+.linkNavbar {
     margin-left: 100vh;
 }
 
-.linkNavbar *{
+.linkNavbar * {
     margin: 0 90px;
 }
 
@@ -126,17 +126,17 @@ input:focus {
 
 /* ================================= Footer ================================= */
 
-#navbarFooter{
+#navbarFooter {
     display: none;
 }
 
 /* ================================= Profile ================================= */
 
-#bodyProfile{
+#bodyProfile {
     overflow: hidden;
 }
 
-#profilViewport{
+#profilViewport {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -144,10 +144,11 @@ input:focus {
     text-align: center;
 }
 
-.profilePresentation{
+.profilePresentation {
     width: 20%;
     border: 1px solid black;
     height: 70vh;
+    background: #d0d0d0;
 }
 
 .profilePresentation p {
@@ -155,17 +156,78 @@ input:focus {
     margin: 0 auto;
 }
 
-.profilePictures{
+.profilePictures {
     width: 65%;
     border: 1px solid black;
-    min-height: 70vh;
+    height: 70vh;
+    overflow: auto;
+}
+
+/* ================================= Settings ================================= */
+
+.bodySetting{
+    overflow: hidden;
+}
+
+.settingViewport {
+    display: flex;
+    justify-content: center;
+}
+
+.settingProfil {
+    height: 70vh;
+    width: 25%;
+}
+
+.settingProfil button {
+    margin: 2vh 11vw;
+}
+
+.settingOther {
+    border: 1px solid black;
+    height: 70vh;
+    width: 46%;
+    margin-left: 2%;
+}
+
+h2 {
+    text-align: center;
+}
+
+h3 {
+    margin-bottom: 10px;
+}
+
+#presentationSetting {
+    width: 90%;
+    height: 21vh;
+    margin: 2vh 5%;
+    font-size: 15px;
+    border: none;
+    color: #454545;
+    resize: none;
+    cursor: pointer;
+}
+
+#presentationSetting:focus {
+    font-weight: bolder;
+    outline: none;
+    color: black;
+}
+
+#presentationSetting::selection {
+    background-color: #b1b1b1;
+}
+
+#websiteSetting{
+    width: 90%;
+    margin: 2vh 5%;
 }
 
 
 @media (max-width: 480px) {
 
     /* ================================= Log & Register ================================= */
-
     .imageHome {
         display: none;
     }
@@ -190,12 +252,11 @@ input:focus {
     }
 
     /* ================================= Header ================================= */
-
     .linkNavbar {
         display: none;
     }
 
-    .logo{
+    .logo {
         margin-left: 20px;
     }
 
@@ -205,8 +266,7 @@ input:focus {
     }
 
     /* ================================= Footer ================================= */
-
-    #navbarFooter{
+    #navbarFooter {
         position: fixed;
         bottom: 0;
         width: 100%;
@@ -217,27 +277,26 @@ input:focus {
         background: #e8e8e8;
     }
 
-    #navbarFooter img{
+    #navbarFooter img {
         height: 25px;
     }
 
     /* ================================= Profil ================================= */
-
-    #bodyProfile{
+    #bodyProfile {
         overflow: auto;
         margin-bottom: 55px;
     }
 
-    #profilViewport{
+    #profilViewport {
         display: block;
     }
 
-    .profilePresentation{
+    .profilePresentation {
         width: 100%;
         height: 25vh;
     }
 
-    .profilePresentation h1{
+    .profilePresentation h1 {
         font-size: 15px;
         text-align: right;
         margin: 0 30px;
@@ -249,9 +308,44 @@ input:focus {
         font-size: 10px;
     }
 
-    .profilePictures{
+    .profilePictures {
         width: 100%;
         margin-top: 15px;
+    }
+
+    /* ================================= Settings ================================= */
+
+    .bodySetting {
+        overflow: auto;
+        margin-bottom: 70px;
+    }
+
+    h2 {
+        margin-bottom: 0;
+    }
+
+    h3 {
+        margin-top: 0;
+    }
+
+    .settingViewport {
+        display: block;
+    }
+
+    .settingProfil {
+        width: 90%;
+        height: 60vh;
+        margin: 0 auto;
+    }
+
+    #presentationSetting {
+        font-size: 3.5vw;
+    }
+
+    .settingOther {
+        width: 90%;
+        height: 60vh;
+        margin: 0 auto;
     }
 
 }

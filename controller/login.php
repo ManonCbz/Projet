@@ -2,14 +2,14 @@
 
 require '../controller/header.php';
 
-if(!empty($_SESSION['username'])){
+if (!empty($_SESSION['username'])) {
     header('Location: profile.php');
 }
 
 $usernamePlaceholder = "Pseudo";
 $passwordPlaceholder = "Mot de passe";
 
-if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
+if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) {
 
     $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
     $stmt->bind_param("s", $_POST['username']);
@@ -20,15 +20,13 @@ if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
     if ($user && password_verify($_POST['password'], $user['password'])) {
         $_SESSION['username'] = $_POST['username'];
         header('Location: profile.php');
-    }
-
-    else {
+    } else {
         ?>
-            <style>
-                .error {
-                    display: block;
-                }
-            </style>
+        <style>
+            .error {
+                display: block;
+            }
+        </style>
         <?php
     }
 }

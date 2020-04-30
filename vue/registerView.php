@@ -10,7 +10,7 @@
         <form action="" method="POST">
 
             <div class="logForm">
-                <input type="text" class="usernameInput" name="username" placeholder= " <?= $usernamePlaceholder ?> ">
+                <input type="text" class="usernameInput" name="username" placeholder=" <?= $usernamePlaceholder ?> ">
             </div>
 
             <div class="logForm">
@@ -22,13 +22,16 @@
             </div>
 
             <div class="logForm">
-                <input type="password" class="passwordInput" name="passwordConfirm" placeholder="<?= $passwordPlaceholder ?>">
+                <input type="password" class="passwordInput" name="passwordConfirm"
+                       placeholder="<?= $passwordPlaceholder ?>">
             </div>
 
             <button type="submit" class="buttonLog">M'inscrire</button>
         </form>
         <div id="changeButton">
-            <span>Déjà inscrit ? </span><a href="../controller/login.php"><button>Se connecter</button></a>
+            <span>Déjà inscrit ? </span><a href="../controller/login.php">
+                <button>Se connecter</button>
+            </a>
         </div>
     </div>
 </div>

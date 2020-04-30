@@ -6,7 +6,7 @@
     <div class="viewportLog">
         <img alt="Spot photo" src="../vue/pictures/log-camera.png" height="80px" width="80px">
 
-        <div class="error"> ● Identifiant ou mot de passe incorrect </div>
+        <div class="error"> ● Identifiant ou mot de passe incorrect</div>
 
         <form action="" method="POST">
 
@@ -21,7 +21,9 @@
             <button type="submit" class="buttonLog">Se connecter</button>
         </form>
         <div id="changeButton">
-            <span>Pas encore inscrit ? </span><a HREF="../controller/register.php"><button>S'inscrire</button></a>
+            <span>Pas encore inscrit ? </span><a HREF="../controller/register.php">
+                <button>S'inscrire</button>
+            </a>
         </div>
     </div>
 </div>
