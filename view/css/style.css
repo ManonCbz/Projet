@@ -136,7 +136,7 @@ input:focus {
     overflow: hidden;
 }
 
-#profilViewport {
+#profileViewport {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -281,13 +281,13 @@ h3 {
         height: 25px;
     }
 
-    /* ================================= Profil ================================= */
+    /* ================================= Profile ================================= */
     #bodyProfile {
         overflow: auto;
         margin-bottom: 55px;
     }
 
-    #profilViewport {
+    #profileViewport {
         display: block;
     }
 

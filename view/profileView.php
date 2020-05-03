@@ -1,5 +1,5 @@
 <body id="bodyProfile">
-<div id="profilViewport">
+<div id="profileViewport">
     <div class="profilePresentation">
 
         <h1> <?= $_SESSION['username'] ?> </h1>

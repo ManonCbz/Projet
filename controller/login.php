@@ -1,6 +1,6 @@
 <?php
 
-require '../controller/header.php';
+require 'header.php';
 
 if (!empty($_SESSION['username'])) {
     header('Location: profile.php');
@@ -31,4 +31,4 @@ if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) 
     }
 }
 
-require '../vue/loginView.php';
+require '../view/loginView.php';

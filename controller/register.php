@@ -166,17 +166,20 @@ if (!empty($_POST)) {
 
         $passwordHash = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-        $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $username, $email, $passwordHash);
-        $stmt->execute();
-        $stmt->close();
+        createAccount($username, $email, $passwordHash);
+
+        createInformation($username);
+
+        global $userID;
 
         session_start();
+
+        $_SESSION['userID'] = $userID;
         $_SESSION['username'] = $username;
         header('Location: profile.php');
     }
 }
 
-require('../vue/registerView.php');
+require('../view/registerView.php');
 
 ?>

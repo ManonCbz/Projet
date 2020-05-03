@@ -5,9 +5,6 @@ if (empty($_SESSION['username'])) {
     header('Location: login.php');
 }
 
-$presentationText = "";
-$websiteValue = "";
-
 
  $sql = 'SELECT * FROM `user_information` WHERE id_user = \'' . $_SESSION['userID'] . '\'';
  $result = $conn->query($sql);
@@ -17,5 +14,5 @@ $websiteValue = "";
      $websiteValue = $row1['website'];
  }
 
-require '../vue/profileView.php';
+require '../view/profileView.php';
 require 'footer.php';

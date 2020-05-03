@@ -27,13 +27,5 @@ while ($row = $result->fetch_assoc()) {
     }
 }
 
-
-/*
-$stmt = $conn->prepare("UPDATE user_information SET presentation = ?, website = ? WHERE `user_information`.`id` = ?;");
-$stmt->bind_param("ss", $presentation, $website);
-$stmt->execute();
-$stmt->close();
-*/
-
-require '../vue/settingView.php';
-require 'footer.php';
+require '../view/settingView.php';
+require '../controller/footer.php';
