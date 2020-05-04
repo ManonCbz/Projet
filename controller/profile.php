@@ -5,17 +5,7 @@ if (empty($_SESSION['username'])) {
     header('Location: login.php');
 }
 
-$userID = $_SESSION['userID'];
-
-echo $userID;
-
-$sql = 'SELECT * FROM `user_information` WHERE id_user = \'' . $_SESSION['userID'] . '\'';
-$result = $conn->query($sql);
-
-while ($row1 = $result->fetch_assoc()){
-    $presentationText = $row1['presentation'];
-    $websiteValue = $row1['website'];
-}
+$informationsUser = getInformations($_SESSION['userID']);
 
 require '../view/profileView.php';
 require 'footer.php';

@@ -1,23 +1,15 @@
-
 <?php
-
 require '../controller/header.php';
 
 if (empty($_SESSION['username'])) {
     header('Location: login.php');
 }
 
-$username = $_SESSION['username'];
-$presentationText = "";
-$websiteValue = "";
-
-$sql = 'SELECT * FROM `user_information` WHERE id_user = \'' . $_SESSION['userID'] . '\'';
-$result = $conn->query($sql);
-
-while ($row1 = $result->fetch_assoc()){
-    $presentationText = $row1['presentation'];
-    $websiteValue = $row1['website'];
+if (!empty($_POST)){
+    updateInformations($_POST['presentationSetting'], $_POST['websiteSetting'], $_SESSION['userID']);
 }
+
+$informationsUser = getInformations($_SESSION['userID']);
 
 require '../view/settingView.php';
 require '../controller/footer.php';

@@ -27,13 +27,11 @@ function createInformation($username){
 
     $sql = 'SELECT id FROM users WHERE username = \'' . $username . '\'';
     $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
 
-    while($row = $result->fetch_assoc()){
-
-        $stmt = $conn->prepare('INSERT INTO user_information (id_user) VALUES (?)');
-        $stmt->bind_param("i", $row['id']);
-        $stmt->execute();
-    }
+    $stmt = $conn->prepare('INSERT INTO user_information (id_user) VALUES (?)');
+    $stmt->bind_param("i", $row['id']);
+    $stmt->execute();
 }
 
 function getID($username){
@@ -41,9 +39,25 @@ function getID($username){
 
     $sql = 'SELECT id FROM users WHERE username = \'' . $username . '\'';
     $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    $_SESSION['userID'] = $row['id'];
+}
 
-    while($row = $result->fetch_assoc()) {
+function getInformations($id){
 
-        $_SESSION['userID'] = $row['id'];
-    }
+    global $conn;
+
+    $sql = 'SELECT * FROM `user_information` WHERE id_user = \'' . $id . '\'';
+    $result = $conn->query($sql);
+    $row1 = $result->fetch_assoc();
+
+    return array ("presentationText"=>$row1['presentation'], "websiteValue"=>$row1['website']);
+}
+
+function updateInformations($presentation, $website, $id){
+    global $conn;
+
+    $stmt = $conn->prepare('UPDATE `user_information` SET `presentation` = ?, `website` = ? WHERE `user_information`.`id_user` = ?');
+    $stmt->bind_param("ssi", $presentation, $website, $id);
+    $stmt->execute();
 }

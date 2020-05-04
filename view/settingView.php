@@ -8,9 +8,9 @@
 
         <form method="post">
             <label for="presentationSetting">Présentation</label><br>
-            <textarea id="presentationSetting"><?= $presentationText ?></textarea>
+            <textarea name="presentationSetting" id="presentationSetting"><?= $informationsUser["presentationText"] ?></textarea>
             <label for="websiteSetting">Votre site web</label><br>
-            <input id="websiteSetting" type="url" value= <?= $websiteValue ?> >
+            <input name="websiteSetting" id="websiteSetting" placeholder="Site web, Instagram, Facebook.." type="url" value= <?= $informationsUser["websiteValue"] ?> >
             <button type="submit">Ok</button>
         </form>
     </div>

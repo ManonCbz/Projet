@@ -3,8 +3,8 @@
     <div class="profilePresentation">
 
         <h1> <?= $_SESSION['username'] ?> </h1>
-        <p><?= $presentationText ?></p>
-        <a href=" <?= $websiteValue ?> ">Mon site web</a>
+        <p><?= $informationsUser["presentationText"] ?></p>
+        <a href=" <?= $informationsUser["websiteValue"] ?> ">Mon site web</a>
 
     </div>
 
