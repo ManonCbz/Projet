@@ -161,6 +161,15 @@ input:focus {
     border: 1px solid black;
     height: 70vh;
     overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.imgDiv{
+    height: 23.5vh;
+    width: 11vw;
+    border: 1px solid black;
+    margin: 24px;
 }
 
 /* ================================= Settings ================================= */
@@ -224,6 +233,39 @@ h3 {
     margin: 2vh 5%;
 }
 
+/* ================================= Add Picture ================================= */
+
+#addPictureBody{
+    overflow: hidden;
+}
+
+h1{
+    text-align: center;
+}
+
+#addPictureViewport{
+    overflow: auto;
+    margin: 0 auto;
+    border: 1px solid black;
+    height: 70vh;
+    width: 70vw;
+}
+
+#statueAddPicture{
+    visibility: hidden;
+    background: #b8efb8;
+    color: #284b29;
+    width: 20%;
+    margin: 5px auto;
+    border-radius: 15px;
+    height: 30px;
+    font-style: italic;
+    text-align: center;
+}
+
+/* ============================================================================== */
+/* ================================= Responsive ================================= */
+/* ============================================================================== */
 
 @media (max-width: 480px) {
 
@@ -310,7 +352,16 @@ h3 {
 
     .profilePictures {
         width: 100%;
+        height: auto;
         margin-top: 15px;
+        overflow: hidden;
+        border: none;
+    }
+
+    .imgDiv{
+        height: 22.5vh;
+        width: 40vw;
+        margin: 7px;
     }
 
     /* ================================= Settings ================================= */

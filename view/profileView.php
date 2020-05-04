@@ -9,7 +9,7 @@
     </div>
 
     <div class="profilePictures">
-
+        <?= displayPicture($_SESSION['userID']) ?>
     </div>
 
 </div>

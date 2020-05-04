@@ -26,7 +26,7 @@ if (isset($_SESSION['username'])) {
         <div class="linkNavbar">
             <a href="profile.php">Profil</a>
             <a href="">Rechercher</a>
-            <a href="">Ajouter une photo</a>
+            <a href="addPicture.php">Ajouter une photo</a>
         </div>
         <div class="iconNavbar">
             <a href="setting.php"><img class="iconNavbar" title="Paramètres" alt="Paramètres"
