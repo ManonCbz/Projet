@@ -19,6 +19,8 @@ if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) 
 
     if ($user && password_verify($_POST['password'], $user['password'])) {
         $_SESSION['username'] = $_POST['username'];
+
+        getID($_SESSION['username']);
         header('Location: profile.php');
     } else {
         ?>

@@ -169,12 +169,10 @@ if (!empty($_POST)) {
         createAccount($username, $email, $passwordHash);
 
         createInformation($username);
-
-        global $userID;
+        getID($username);
 
         session_start();
 
-        $_SESSION['userID'] = $userID;
         $_SESSION['username'] = $username;
         header('Location: profile.php');
     }

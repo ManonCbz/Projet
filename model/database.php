@@ -30,9 +30,20 @@ function createInformation($username){
 
     while($row = $result->fetch_assoc()){
 
-        $_SESSION['userID'] = $row['id'];
         $stmt = $conn->prepare('INSERT INTO user_information (id_user) VALUES (?)');
         $stmt->bind_param("i", $row['id']);
         $stmt->execute();
+    }
+}
+
+function getID($username){
+    global $conn;
+
+    $sql = 'SELECT id FROM users WHERE username = \'' . $username . '\'';
+    $result = $conn->query($sql);
+
+    while($row = $result->fetch_assoc()) {
+
+        $_SESSION['userID'] = $row['id'];
     }
 }
