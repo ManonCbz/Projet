@@ -25,7 +25,7 @@ if (isset($_SESSION['username'])) {
         <img alt="logo" class="logo" src="../view/pictures/log-camera.png" height="40px" width="40px">
         <div class="linkNavbar">
             <a href="profile.php">Profil</a>
-            <a href="">Rechercher</a>
+            <a href="search.php">Rechercher</a>
             <a href="addPicture.php">Ajouter une photo</a>
         </div>
         <div class="iconNavbar">

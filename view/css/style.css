@@ -263,6 +263,30 @@ h1{
     text-align: center;
 }
 
+/* ================================= Search Map ================================= */
+
+#bodyMap{
+    overflow: hidden;
+}
+
+#viewportMap{
+    display: flex;
+    justify-content: center;
+}
+
+#searchMap{
+    height: 87vh;
+    margin: 10px;
+    width: 30vw;
+    overflow: auto;
+    border: black 2px solid;
+}
+
+#map{
+    height: 90vh;
+    width: 70vw;
+}
+
 /* ============================================================================== */
 /* ================================= Responsive ================================= */
 /* ============================================================================== */
@@ -399,4 +423,24 @@ h1{
         margin: 0 auto;
     }
 
+    /* ================================= Search Map ================================= */
+
+    #bodyMap{
+        overflow: auto;
+    }
+
+    #viewportMap{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    #map{
+        height: 65vh;
+        width: 100vw;
+    }
+
+    #searchMap{
+        width: 95vw;
+        margin: 5px auto;
+    }
 }
