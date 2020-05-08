@@ -1,6 +1,7 @@
 <?php
 require 'header.php';
 
+
 $msg = '';
 $statueAddPicture = '';
 
@@ -11,7 +12,7 @@ if(!empty($_POST)){
 
     addPicture($userID, $img_name);
 
-    header('Location: profile.php');
+    //header('Location: profile.php');
 
 }
 

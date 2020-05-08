@@ -7,5 +7,7 @@ if (empty($_SESSION['username'])) {
 
 $informationsUser = getInformations($_SESSION['userID']);
 
+
 require '../view/profileView.php';
 require 'footer.php';
+

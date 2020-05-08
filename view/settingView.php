@@ -16,6 +16,12 @@
     </div>
 
     <div class="settingOther">
+        <form method="post">
+            <label for="newEmail">Email : </label>
+            <input type="email" name="newEmail" id="newEmail" class="newEmail" placeholder="<?= $newEmailPlaceholder ?>">
+            <input type="email" name="newEmailConf" id="newEmailConf" class="newEmail" placeholder="<?= $newEmailPlaceholder ?>">
+            <button type="submit">Ok</button>
+        </form>
     </div>
 </div>
 

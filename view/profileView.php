@@ -9,8 +9,12 @@
     </div>
 
     <div class="profilePictures">
-        <?= displayPicture($_SESSION['userID']) ?>
+        <?= // $images = displayPicture($_SESSION['userID']);
+            displayPicture($_SESSION['userID']);
+         ?>
     </div>
+
+    <!-- echo "<img class='imgDiv' src='../view/upload/".$row['img_name']."'>"; -->
 
 </div>
 </body>

@@ -36,6 +36,9 @@ function createInformation($username)
     $stmt->execute();
 }
 
+// ===========================================  Get  =========================================== //
+
+
 function getID($username)
 {
     global $conn;
@@ -58,6 +61,8 @@ function getInformations($id)
     return array("presentationText" => $row1['presentation'], "websiteValue" => $row1['website']);
 }
 
+// ===========================================  Update  =========================================== //
+
 function updateInformations($presentation, $website, $id)
 {
     global $conn;
@@ -68,25 +73,49 @@ function updateInformations($presentation, $website, $id)
     $stmt->close();
 }
 
-function addPicture($id, $img_name){
+function updateEmail($newEmail, $id)
+{
 
     global $conn;
+
+    $stmt = $conn->prepare('UPDATE users SET email = ? WHERE id = ?');
+    $stmt->bind_param("si", $newEmail, $id);
+    $stmt->execute();
+    $stmt->close();
+}
+
+// ===========================================  Pictures  =========================================== //
+
+function addPicture($id, $img_name)
+{
+
+    global $conn;
+    $img_name = date("YmdHis") . $_FILES['image']['name'];
 
     $stmt = $conn->prepare('INSERT INTO images (id_user, img_name) VALUES (?, ?)');
     $stmt->bind_param("is", $id, $img_name);
     $stmt->execute();
     $stmt->close();
+
+    move_uploaded_file($_FILES['image']['tmp_name'], '../view/upload/' . date("YmdHis") . $_FILES['image']['name']);
 }
 
-function displayPicture($id){
+
+function displayPicture($id)
+{
 
     global $conn;
 
     $sql = $conn->query("SELECT * FROM images WHERE id_user = " . $id);
 
-    while ($row = $sql->fetch_assoc()){
-        echo "<div class='imgDiv'>
-              <img src='".$row['img_name']."'>
-              </div>";
+    $i = 0;
+
+    while ($row = $sql->fetch_assoc()) {
+        $images[$i] = $row['img_name'];
+        $i++;
+        echo "<img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'>";
     }
+
+    //return $images;
+
 }
