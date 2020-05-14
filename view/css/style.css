@@ -193,7 +193,6 @@ input:focus {
 }
 
 .settingOther {
-    border: 1px solid black;
     height: 70vh;
     width: 46%;
     margin-left: 2%;
@@ -212,7 +211,6 @@ h3 {
     height: 21vh;
     margin: 2vh 5%;
     font-size: 15px;
-    border: none;
     color: #454545;
     resize: none;
     cursor: pointer;
@@ -231,6 +229,33 @@ h3 {
 #websiteSetting{
     width: 90%;
     margin: 2vh 5%;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+
+.newEmail{
+    width: 50%;
+    margin: 5px 0;
+}
+
+.settingOther button{
+    width: 50px;
+
+}
+
+.settingOther *{
+    margin: 0 5vw;
+}
+
+.settingOther form *{
+    margin: 5px 0;
+}
+
+#deleteAccount {
+    float: right;
+    margin: 20vh 0;
+    cursor: pointer;
 }
 
 /* ================================= Add Picture ================================= */
@@ -251,16 +276,55 @@ h1{
     width: 70vw;
 }
 
-#statueAddPicture{
-    visibility: hidden;
-    background: #b8efb8;
-    color: #284b29;
-    width: 20%;
-    margin: 5px auto;
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+input[type=file]{
+    border: 1px solid gray;
+    padding: 5px;
+    width: 20vw;
+    margin: 4vh;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#addPictureViewport button{
+    margin: 0 auto;
+    width: 86px;
+    padding: 10px;
     border-radius: 15px;
-    height: 30px;
-    font-style: italic;
-    text-align: center;
+    border: 1px solid #535353;
+    font-size: 17px;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px grey;
+}
+
+#addPictureViewport button:hover {
+    color: gray;
+    border: 1px solid #e1e1e1;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+#latLng{
+    margin: 4vh;
+}
+
+.titleCat{
+    margin-left: 4vh;
+    font-size: 25px;
+}
+
+.categories{
+    margin-left: 4vh;
 }
 
 /* ================================= Search Map ================================= */
@@ -286,6 +350,35 @@ h1{
     height: 90vh;
     width: 70vw;
 }
+
+.searchBar{
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 80%;
+    height: 5vh;
+    margin: 3vh auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.searchBar img{
+    height: 80%;
+    width: auto;
+    opacity: 60%;
+    margin-left: 1vw;
+}
+
+.searchBar input{
+    width: 85%;
+    height: 100%;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+
 
 /* ============================================================================== */
 /* ================================= Responsive ================================= */
@@ -345,6 +438,10 @@ h1{
 
     #navbarFooter img {
         height: 25px;
+    }
+
+    #designFooter{
+        display: none;
     }
 
     /* ================================= Profile ================================= */
@@ -420,8 +517,25 @@ h1{
     .settingOther {
         width: 90%;
         height: 60vh;
+        border: none;
         margin: 0 auto;
     }
+
+    #websiteSetting{
+        margin: 0 auto;
+    }
+
+    .settingViewport button{
+        margin: 2vh auto;
+        width: 20vw;
+    }
+
+    .newEmail{
+        margin: 5px auto;
+        width: 100%;
+    }
+
+
 
     /* ================================= Search Map ================================= */
 
@@ -442,5 +556,37 @@ h1{
     #searchMap{
         width: 95vw;
         margin: 5px auto;
+        border: none;
     }
+
+    /* ================================= Add picture ================================= */
+
+    #addPictureBody{
+        margin-bottom: 15px;
+        overflow: auto;
+    }
+
+    #addPictureViewport{
+        border: none;
+        width: 95vw;
+    }
+
+    input[type=file]{
+        width: 81vw;
+        margin: 0 4vh;
+    }
+
+
+    #latLng{
+        display: grid;
+    }
+
+    .titleCat{
+        margin: 0 4vh;
+    }
+
+    #addPictureViewport button{
+        margin: 4vh auto;
+    }
+
 }

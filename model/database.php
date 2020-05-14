@@ -119,3 +119,21 @@ function displayPicture($id)
     //return $images;
 
 }
+
+function deleteAccount($id)
+{
+    global $conn;
+
+    $sql1 = $conn->prepare("DELETE FROM users WHERE id=" . $id);
+    $sql1->execute();
+    $sql1->close();
+
+    $sql2 = $conn->prepare("DELETE FROM user_informations WHERE id_user=" . $id);
+    $sql2->execute();
+    $sql2->close();
+
+    $sql3 = $conn->prepare("DELETE FROM images WHERE id_user=" . $id);
+    $sql3->execute();
+    $sql3->close();
+
+}

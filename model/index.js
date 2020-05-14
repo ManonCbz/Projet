@@ -1,8 +1,10 @@
 var lat = 48.852969;
 var lon = 2.349903;
 var map = null;
+
 // Fonction d'initialisation de la carte
 function initMap() {
+
     // Créer l'objet "map" et l'insèrer dans l'élément HTML qui a l'ID "map"
     map = new google.maps.Map(document.getElementById("map"), {
         // Nous plaçons le centre de la carte avec les coordonnées ci-dessus
@@ -14,7 +16,7 @@ function initMap() {
         // Nous activons les options de contrôle de la carte (plan, satellite...)
         mapTypeControl: true,
         // Nous désactivons la roulette de souris
-        scrollwheel: false,
+        scrollwheel: true,
         mapTypeControlOptions: {
             // Cette option sert à définir comment les options se placent
             style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
@@ -26,6 +28,7 @@ function initMap() {
             style: google.maps.NavigationControlStyle.ZOOM_PAN
         }
     });
+
 }
 window.onload = function(){
     // Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
