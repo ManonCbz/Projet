@@ -11,11 +11,7 @@ $passwordPlaceholder = "Mot de passe";
 
 if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) {
 
-    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
-    $stmt->bind_param("s", $_POST['username']);
-    $stmt->execute();
-    $user = $stmt->get_result()->fetch_assoc();
-    $stmt->close();
+    $user = getLog($_POST['username']);
 
     if ($user && password_verify($_POST['password'], $user['password'])) {
         $_SESSION['username'] = $_POST['username'];

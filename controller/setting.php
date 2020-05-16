@@ -1,7 +1,8 @@
 <?php
 require '../controller/header.php';
 
-$newEmailPlaceholder = "Nouvelle adresse email";
+$newEmailPlaceholder1 = "Nouvelle adresse email";
+$newEmailPlaceholder2 = "Confirmez votre adresse email";
 
 if (empty($_SESSION['username'])) {
     header('Location: login.php');
@@ -16,7 +17,8 @@ if(!empty($_POST['newEmail']) && $_POST['newEmail'] == $_POST['newEmailConf']){
 }
 
 if($_POST['newEmail'] !== $_POST['newEmailConf']){
-    $newEmailPlaceholder = "L'adresse email ne correspond pas";
+    $newEmailPlaceholder1 = "L'adresse email ne correspond pas";
+    $newEmailPlaceholder2 = "L'adresse email ne correspond pas";
     ?>
     <style>
         .newEmail::placeholder {
@@ -27,6 +29,53 @@ if($_POST['newEmail'] !== $_POST['newEmailConf']){
 }
 
 $informationsUser = getInformations($_SESSION['userID']);
+
+$deletePlaceholder1 = "Mot de passe";
+$deletePlaceholder2 = "Confirmez votre Mot de Passe";
+
+if(!empty($_POST['password']) && $_POST['password'] == $_POST['confPassword']){
+
+    $user = getLog($_SESSION['username']);
+
+    if (password_verify($_POST['password'], $user['password'])) {
+
+        $id = $_SESSION['userID'];
+
+        deleteAccount($id);
+
+        deleteInformations($id);
+
+        deletePictures($id);
+
+        session_destroy();
+
+        header('Location: login.php');
+
+    }
+    else{
+        $deletePlaceholder1 = "Mot de passe incorrect";
+        $deletePlaceholder2 = "Mot de passe incorrect";
+        ?>
+        <style>
+            .deleteInput::placeholder {
+                color: red;
+                font-style: italic
+            }
+        </style><?php
+    }
+}
+
+if ($_POST['password'] !== $_POST['confPassword']){
+        $deletePlaceholder1 = "Mot de passe different";
+        $deletePlaceholder2 = "Mot de passe different";
+        ?>
+        <style>
+            .deleteInput::placeholder {
+                color: red;
+                font-style: italic
+            }
+        </style><?php
+}
 
 require '../view/settingView.php';
 require '../controller/footer.php';

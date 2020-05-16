@@ -49,6 +49,19 @@ function getID($username)
     $_SESSION['userID'] = $row['id'];
 }
 
+ function getLog($username){
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $user = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
+
+    return $user;
+}
+
+
 function getInformations($id)
 {
 
@@ -86,14 +99,14 @@ function updateEmail($newEmail, $id)
 
 // ===========================================  Pictures  =========================================== //
 
-function addPicture($id, $img_name)
+function addPicture($id, $img_name, $latitude, $longitude)
 {
 
     global $conn;
     $img_name = date("YmdHis") . $_FILES['image']['name'];
 
-    $stmt = $conn->prepare('INSERT INTO images (id_user, img_name) VALUES (?, ?)');
-    $stmt->bind_param("is", $id, $img_name);
+    $stmt = $conn->prepare('INSERT INTO images (id_user, img_name, latitude, longitude) VALUES (?, ?, ?, ?)');
+    $stmt->bind_param("isdd", $id, $img_name, $latitude, $longitude);
     $stmt->execute();
     $stmt->close();
 
@@ -128,12 +141,20 @@ function deleteAccount($id)
     $sql1->execute();
     $sql1->close();
 
-    $sql2 = $conn->prepare("DELETE FROM user_informations WHERE id_user=" . $id);
+}
+
+function deleteInformations($id){
+    global $conn;
+
+    $sql2 = $conn->prepare("DELETE FROM user_information WHERE id_user=" . $id);
     $sql2->execute();
     $sql2->close();
+}
+
+function deletePictures($id){
+    global $conn;
 
     $sql3 = $conn->prepare("DELETE FROM images WHERE id_user=" . $id);
     $sql3->execute();
     $sql3->close();
-
 }
