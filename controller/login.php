@@ -14,11 +14,23 @@ if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) 
     $user = getLog($_POST['username']);
 
     if ($user && password_verify($_POST['password'], $user['password'])) {
-        $_SESSION['username'] = $_POST['username'];
 
-        getID($_SESSION['username']);
-        header('Location: profile.php');
-    } else {
+        if($user['type'] == 0){
+            $_SESSION['username'] = $_POST['username'];
+
+            getID($_SESSION['username']);
+            header('Location: profile.php');
+        }
+
+        if($user['type'] == 1){
+            $_SESSION['admin'] = $_POST['username'];
+
+            header('Location: admin.php');
+        }
+
+    }
+
+    else {
         ?>
         <style>
             .error {

@@ -389,6 +389,75 @@ h4{
     font-size: 18px;
 }
 
+/* ================================= Admin ================================= */
+
+#adminBody{
+    overflow: hidden;
+}
+
+#adminViewport{
+    display: flex;
+    justify-content: space-around;
+    margin: 5vh 0;
+}
+
+#acceptPict{
+    border: 1px solid black;
+    height: 80vh;
+    width: 50vw;
+}
+
+#otherAdmin{
+    border: 1px solid black;
+    height: 80vh;
+    width: 30vw;
+}
+
+#controle{
+    display: flex;
+    justify-content: space-around;
+    margin: 5vh 0;
+}
+
+#adminImage{
+    border: 1px solid black;
+    width: 35%;
+    height: 25vh;
+}
+
+#adminInformationImage{
+    border: 1px solid black;
+    width: 50%;
+    height: 45vh;
+}
+
+#buttonAdmin{
+    display: flex;
+    justify-content: center;
+}
+
+#acceptAdminButton{
+    margin-right: 5vw;
+    background: green;
+}
+
+#deleteAdminButton{
+    background: red;
+}
+
+#addAdminForm{
+    width: 80%;
+    margin: 0 auto;
+}
+
+#addAdminForm * {
+    margin: 1vh;
+}
+
+#addAdminForm button{
+    width: 45%;
+    margin: 3vh auto;
+}
 
 
 /* ============================================================================== */

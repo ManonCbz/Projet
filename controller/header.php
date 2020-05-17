@@ -44,6 +44,19 @@ $apiKey = "";
         <?php
     }
 
+    if (isset($_SESSION['admin'])) {
+        ?>
+        <div id="navbar">
+            <img alt="logo" class="logo" src="../view/pictures/log-camera.png" height="40px" width="40px">
+            <p>Espace administrateur</p>
+            <div class="iconNavbar">
+                <a href="logout.php"><img class="iconNavbar" title="Se déconnecter" alt="Se déconnecter"
+                                          src="../view/pictures/icon-logout.png"></a>
+            </div>
+        </div>
+        <?php
+    }
+
     ?>
 </header>
 </body>
