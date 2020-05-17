@@ -5,8 +5,13 @@
         <h2>Controle photo</h2>
 
         <div id="controle">
-            <div id="adminImage"></div>
-            <div id="adminInformationImage"></div>
+            <div id="adminImage">
+                <p>Toutes les photos sont mises à jour !</p>
+                <?=getAllImages()?>
+            </div>
+            <div id="adminInformationImage">
+
+            </div>
         </div>
 
         <div id="buttonAdmin">

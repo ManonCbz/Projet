@@ -1,5 +1,7 @@
 <?php
 
+// Connexion à la base de donnée //
+
 $conn = new Mysqli ("localhost", "root", "");
 
 if ($conn->connect_error) {
@@ -8,9 +10,7 @@ if ($conn->connect_error) {
     $conn->select_db("project-spot");
 }
 
-
-// =========================================== Fonctions =========================================== //
-
+// =========================================== Function =========================================== //
 
 function createAccount($username, $email, $password)
 {
@@ -38,7 +38,6 @@ function createInformation($username)
 
 // ===========================================  Get  =========================================== //
 
-
 function getID($username)
 {
     global $conn;
@@ -49,7 +48,8 @@ function getID($username)
     $_SESSION['userID'] = $row['id'];
 }
 
- function getLog($username){
+function getLog($username)
+{
     global $conn;
 
     $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
@@ -61,10 +61,8 @@ function getID($username)
     return $user;
 }
 
-
 function getInformations($id)
 {
-
     global $conn;
 
     $sql = 'SELECT * FROM `user_information` WHERE id_user = \'' . $id . '\'';
@@ -88,7 +86,6 @@ function updateInformations($presentation, $website, $id)
 
 function updateEmail($newEmail, $id)
 {
-
     global $conn;
 
     $stmt = $conn->prepare('UPDATE users SET email = ? WHERE id = ?');
@@ -97,7 +94,7 @@ function updateEmail($newEmail, $id)
     $stmt->close();
 }
 
-// ===========================================  Pictures  =========================================== //
+// ===========================================  Display  =========================================== //
 
 function addPicture($id, $img_name, $latitude, $longitude)
 {
@@ -113,25 +110,18 @@ function addPicture($id, $img_name, $latitude, $longitude)
     move_uploaded_file($_FILES['image']['tmp_name'], '../view/upload/' . date("YmdHis") . $_FILES['image']['name']);
 }
 
-
 function displayPicture($id)
 {
-
     global $conn;
 
     $sql = $conn->query("SELECT * FROM images WHERE id_user = " . $id);
 
-    $i = 0;
-
     while ($row = $sql->fetch_assoc()) {
-        $images[$i] = $row['img_name'];
-        $i++;
         echo "<img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'>";
     }
-
-    //return $images;
-
 }
+
+// ===========================================  Delete  =========================================== //
 
 function deleteAccount($id)
 {
@@ -143,7 +133,8 @@ function deleteAccount($id)
 
 }
 
-function deleteInformations($id){
+function deleteInformations($id)
+{
     global $conn;
 
     $sql2 = $conn->prepare("DELETE FROM user_information WHERE id_user=" . $id);
@@ -151,10 +142,54 @@ function deleteInformations($id){
     $sql2->close();
 }
 
-function deletePictures($id){
+function deletePictures($id)
+{
     global $conn;
 
     $sql3 = $conn->prepare("DELETE FROM images WHERE id_user=" . $id);
     $sql3->execute();
     $sql3->close();
+}
+
+// ===========================================  Admin  =========================================== //
+
+function getAllImages()
+{
+    global $conn;
+
+    $sql = $conn->query('SELECT * FROM images WHERE statut = 0 LIMIT 1');
+
+    while ($row = $sql->fetch_assoc()) {
+        echo "<img class='imgDivAdmin' src='../view/upload/" . $row['img_name'] . "'>";
+        $_SESSION['imageID'] = $row['id'];
+        ?>
+        <style>
+            #adminImage p {
+                display: none;
+            }
+        </style>
+        <?php
+    }
+
+
+}
+
+function validateImageAdmin($idImage)
+{
+    global $conn;
+
+    $stmt = $conn->prepare('UPDATE images SET statut = 1 WHERE id = ?');
+    $stmt->bind_param("i", $idImage);
+    $stmt->execute();
+    $stmt->close();
+}
+
+function deleteImageAdmin($idImage)
+{
+    global $conn;
+
+    $stmt = $conn->prepare("DELETE FROM images WHERE id = ?");
+    $stmt->bind_param('i', $idImage);
+    $stmt->execute();
+    $stmt->close();
 }

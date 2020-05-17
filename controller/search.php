@@ -2,6 +2,8 @@
 
 require 'header.php';
 
+// ===== verification de connexion ===== //
+
 if (empty($_SESSION['username'])) {
     header('Location: login.php');
 }

@@ -125,6 +125,7 @@ input:focus {
 }
 
 /* ================================= Footer ================================= */
+/* Uniquement pour le responsive */
 
 #navbarFooter {
     display: none;
@@ -420,7 +421,6 @@ h4{
 }
 
 #adminImage{
-    border: 1px solid black;
     width: 35%;
     height: 25vh;
 }
@@ -437,12 +437,29 @@ h4{
 }
 
 #acceptAdminButton{
+    padding: 10px;
     margin-right: 5vw;
-    background: green;
+    background: #76cc76;
+    border-radius: 20px;
+    border: 1px solid green;
+    cursor: pointer;
+}
+
+#acceptAdminButton:hover{
+    background: #cfefcf;
 }
 
 #deleteAdminButton{
-    background: red;
+    padding: 10px;
+    margin-right: 5vw;
+    background: #f36b6b;
+    border-radius: 20px;
+    border: 1px solid red;
+    cursor: pointer;
+}
+
+#deleteAdminButton:hover{
+    background: #f7b1b1;
 }
 
 #addAdminForm{
@@ -457,6 +474,14 @@ h4{
 #addAdminForm button{
     width: 45%;
     margin: 3vh auto;
+}
+
+.imgDivAdmin{
+    width: 100%;
+}
+
+#adminImage p{
+    color: green;
 }
 
 

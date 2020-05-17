@@ -2,6 +2,8 @@
 
 require '../controller/header.php';
 
+// ===== verification de connexion (Si la session est déjà ouverte -> profile.php) ===== //
+
 if (!empty($_SESSION['username'])) {
     header('Location: profile.php');
 }
@@ -12,7 +14,7 @@ $passwordPlaceholder = 'Mot de passe';
 
 $userID = '';
 
-// Si le formulaire (ci-dessous) est rempli
+// Si le formulaire est rempli
 
 if (!empty($_POST)) {
 
@@ -38,7 +40,8 @@ if (!empty($_POST)) {
                 color: red;
                 font-style: italic
             }
-        </style><?php
+        </style>
+        <?php
     }
 
     // Si le pseudo contient un caractére spécial
@@ -52,7 +55,8 @@ if (!empty($_POST)) {
                 color: red;
                 font-style: italic
             }
-        </style><?php
+        </style>
+        <?php
     }
 
     // Si le pseudo a déjà été enregistré/utilisé
@@ -72,7 +76,8 @@ if (!empty($_POST)) {
                     color: red;
                     font-style: italic
                 }
-            </style><?php
+            </style>
+            <?php
         }
     }
 
@@ -87,7 +92,8 @@ if (!empty($_POST)) {
                 color: red;
                 font-style: italic
             }
-        </style><?php
+        </style>
+        <?php
     }
 
     // Si le mail est n'est pas valide
@@ -101,7 +107,8 @@ if (!empty($_POST)) {
                 color: red;
                 font-style: italic
             }
-        </style><?php
+        </style>
+        <?php
     }
 
     // Si l'email est déjà utilisé
@@ -121,7 +128,8 @@ if (!empty($_POST)) {
                     color: red;
                     font-style: italic
                 }
-            </style><?php
+            </style>
+            <?php
         }
     }
 
@@ -136,7 +144,8 @@ if (!empty($_POST)) {
                 color: red;
                 font-style: italic
             }
-        </style><?php
+        </style>
+        <?php
     }
 
     // Si le mot de passe ne correspond pas à la confirmation
@@ -150,7 +159,8 @@ if (!empty($_POST)) {
                 color: red;
                 font-style: italic
             }
-        </style><?php
+        </style>
+        <?php
     }
 
     // =========================================== Formulaire Correct =========================================== //
@@ -165,6 +175,8 @@ if (!empty($_POST)) {
         // Je hache le mot de passe
 
         $passwordHash = password_hash($_POST['password'], PASSWORD_BCRYPT);
+
+        // Appel des fonctions pour créer le compte et le profil utilisateur + Ouverture session & redirection
 
         createAccount($username, $email, $passwordHash);
 

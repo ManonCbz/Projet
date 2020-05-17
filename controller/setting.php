@@ -1,12 +1,14 @@
 <?php
 require '../controller/header.php';
 
-$newEmailPlaceholder1 = "Nouvelle adresse email";
-$newEmailPlaceholder2 = "Confirmez votre adresse email";
+// ===== verification de connexion ===== //
 
 if (empty($_SESSION['username'])) {
     header('Location: login.php');
 }
+
+$newEmailPlaceholder1 = "Nouvelle adresse email";
+$newEmailPlaceholder2 = "Confirmez votre adresse email";
 
 if (!empty($_POST['presentationSetting'] || $_POST['websiteSetting'])){
     updateInformations($_POST['presentationSetting'], $_POST['websiteSetting'], $_SESSION['userID']);

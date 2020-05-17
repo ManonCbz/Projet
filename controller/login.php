@@ -2,6 +2,8 @@
 
 require 'header.php';
 
+// ===== verification de connexion (Si la session est déjà ouverte -> profile.php) ===== //
+
 if (!empty($_SESSION['username'])) {
     header('Location: profile.php');
 }
