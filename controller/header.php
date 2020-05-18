@@ -6,8 +6,6 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-$apiKey = "";
-
 ?>
 <html lang="fr">
 <head>
@@ -16,10 +14,6 @@ $apiKey = "";
     <link href="../view/css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina+2|Satisfy&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, user-scalable=no">
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=<?=$apiKey?>&callback=initMap"
-            type="text/javascript">
-    </script>
 </head>
 <body>
 <header>

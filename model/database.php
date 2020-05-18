@@ -130,7 +130,6 @@ function deleteAccount($id)
     $sql1 = $conn->prepare("DELETE FROM users WHERE id=" . $id);
     $sql1->execute();
     $sql1->close();
-
 }
 
 function deleteInformations($id)
@@ -170,8 +169,6 @@ function getAllImages()
         </style>
         <?php
     }
-
-
 }
 
 function validateImageAdmin($idImage)
