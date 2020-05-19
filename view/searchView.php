@@ -13,7 +13,7 @@
 
     </div>
 </div>
-
+<div id="txtHint"></div>
 <script src="../view/js/api.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<?=$apiKey?>&libraries=places&callback=initMap"
         async defer></script>

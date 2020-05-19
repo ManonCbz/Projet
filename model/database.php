@@ -98,7 +98,6 @@ function updateEmail($newEmail, $id)
 
 function addPicture($id, $img_name, $latitude, $longitude)
 {
-
     global $conn;
     $img_name = date("YmdHis") . $_FILES['image']['name'];
 
@@ -107,7 +106,7 @@ function addPicture($id, $img_name, $latitude, $longitude)
     $stmt->execute();
     $stmt->close();
 
-    move_uploaded_file($_FILES['image']['tmp_name'], '../view/upload/' . date("YmdHis") . $_FILES['image']['name']);
+    move_uploaded_file($_FILES['image']['tmp_name'], '../view/upload/' . $img_name);
 }
 
 function displayPicture($id)
@@ -189,4 +188,29 @@ function deleteImageAdmin($idImage)
     $stmt->bind_param('i', $idImage);
     $stmt->execute();
     $stmt->close();
+}
+
+
+function searchImage($lat, $lng){
+    global $conn;
+
+    $latMin = $lat - 0.005;
+    $latMax = $lat + 0.005;
+    $lngMin = $lng - 0.005;
+    $lngMax = $lng + 0.005;
+
+    /*$stmt = $conn->prepare("SELECT * FROM `images` WHERE `latitude` BETWEEN ? AND ? AND `longitude` BETWEEN ? AND ?");
+    $stmt->bind_param("dddd", $latMin, $latMax, $lngMin, $lngMax);
+    $stmt->execute();
+*/
+    $sql = $conn->query("SELECT * FROM `images` WHERE `latitude` BETWEEN $latMin AND $latMax AND `longitude` BETWEEN $lngMin AND $lngMax");
+
+    echo $latMin . "<br>";
+    echo $latMax . "<br>";
+    echo $lngMin . "<br>";
+    echo $lngMax . "<br>";
+
+    while ($row = $sql->fetch_assoc()) {
+        echo "<div><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Lat / Long :". $row['latitude'] . $row['longitude']."</div>";
+    }
 }

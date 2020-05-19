@@ -9,7 +9,7 @@ function initMap()
     // Ajout de la carte dans la div appropriée
 
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 11,
+        zoom: 13,
         center: Paris
     });
 
@@ -31,10 +31,25 @@ function initMap()
         places.forEach(function (place)
         {
             bounds.extend(place.geometry.location);
+            showImage(place.geometry.location.lat(), place.geometry.location.lng());
         });
 
         // Affiche les données dans la carte précedemment déclaré (JS:11)
         map.fitBounds(bounds);
-        map.setZoom(12);
+        map.setZoom(13);
     });
+
+}
+
+function showImage(lat, lng) {
+    var xhttp;
+
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("txtHint").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("GET", "searchimage.php?lat="+lat+"&lng="+lng, true);
+    xhttp.send();
 }
