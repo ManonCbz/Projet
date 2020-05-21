@@ -27,14 +27,30 @@ function initMap() {
             var lng = place.geometry.location.lng();
 
             bounds.extend(place.geometry.location);
-            showImage(lat, lng);
+            showImage(lat, lng);;
         });
 
         // Affiche les données dans la carte précedemment déclaré (var map)
         map.fitBounds(bounds);
         map.setZoom(13);
+
     });
 
+    function addMarker(location) {
+        marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+        marker.setMap(map);
+
+    }
+
+    function TestMarker() {
+        var Paris = {lat: 48.852969, lng: 2.349903};
+        addMarker(Paris);
+    }
+
+    TestMarker();
 }
 
 function showImage(lat, lng) {
@@ -45,11 +61,18 @@ function showImage(lat, lng) {
 
         if (this.readyState == 4 && this.status == 200) {
 
-            document.getElementById("txtHint").innerHTML = this.responseText;
-
+            //document.getElementById("txtHint").innerHTML = this.responseText;
+            // Quand on aura reçu notre JSON, on pourra le traduire en objet JS
+            var json = JSON.parse(xhr.responseText);
+            // json['case1'] vaut donc 'valeur1', etc
+            document.getElementById('txtHint').innerText = json;
+            console.log(json);
         }
     }
 
     xhttp.open("GET", "searchImage.php?lat=" + lat + "&lng=" + lng, true);
     xhttp.send();
 }
+
+
+

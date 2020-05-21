@@ -59,6 +59,12 @@ if (!empty($_POST)) {
     }
 }
 
+echo $_POST['day'];
+
+echo $_POST['placeCity'];
+echo $_POST['placeSea'];
+echo $_POST['placeCountryside'];
+echo $_POST['placeMountain'];
 
 require '../view/addPictureView.php';
 require 'footer.php';

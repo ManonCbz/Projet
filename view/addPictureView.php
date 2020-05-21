@@ -16,31 +16,31 @@
 
         <div class="categories">
             <h4>Paysage :</h4>
-            <input type="checkbox" id="ville" name="drone" value="ville" checked>
+            <input type="checkbox" id="ville" name="placeCity" value="ville" checked>
             <label for="ville">Ville</label>
 
-            <input type="checkbox" id="campagne" name="drone" value="campagne">
+            <input type="checkbox" id="campagne" name="placeCountryside" value="campagne">
             <label for="campagne">Campagne</label>
 
-            <input type="checkbox" id="mer" name="drone" value="mer">
+            <input type="checkbox" id="mer" name="placeSea" value="mer">
             <label for="mer">Mer</label>
 
-            <input type="checkbox" id="montagne" name="drone" value="montagne">
+            <input type="checkbox" id="montagne" name="placeMountain" value="montagne">
             <label for="montagne">Montagne</label>
         </div>
 
         <div class="categories">
             <h4>Journée :</h4>
-            <input type="checkbox" id="aurore" name="drone" value="aurore" checked>
+            <input type="radio" id="aurore" name="day" value="aurore" checked>
             <label for="aurore">Aurore</label>
 
-            <input type="checkbox" id="journée" name="drone" value="journée">
+            <input type="radio" id="journée" name="day" value="journée">
             <label for="journée">Journée</label>
 
-            <input type="checkbox" id="Crepuscule" name="drone" value="Crepuscule">
+            <input type="radio" id="Crepuscule" name="day" value="Crepuscule">
             <label for="Crepuscule">Crepuscule</label>
 
-            <input type="checkbox" id="nuit" name="drone" value="nuit">
+            <input type="radio" id="nuit" name="day" value="nuit">
             <label for="nuit">Nuit</label>
         </div>
         <button type="submit">Envoyer</button>

@@ -8,6 +8,7 @@ if (empty($_SESSION['admin'])) {
     header('Location: login.php');
 }
 
+$picture = getAllImages();
 
 // Validation de la photo :
 

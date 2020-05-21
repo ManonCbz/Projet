@@ -111,9 +111,6 @@ input:focus {
     margin-left: 50px;
 }
 
-.linkNavbar {
-    margin-left: 100vh;
-}
 
 .linkNavbar * {
     margin: 0 90px;
@@ -173,7 +170,6 @@ input:focus {
 .imgDiv {
     height: 23.5vh;
     width: 11vw;
-    border: 1px solid black;
     margin: 24px;
 }
 
@@ -425,7 +421,7 @@ h4 {
 
 #controle p {
     color: green;
-    display: none;
+    display: block;
     text-align: center;
     margin: 0 auto;
     padding: 120px;
@@ -439,10 +435,12 @@ h4 {
 .imgDivAdmin {
     width: 250px;
     max-height: 320px;
+    display: none;
 }
 
 .adminInformationImage {
     width: 35%;
+    display: none;
 }
 
 #buttonAdmin {
@@ -621,7 +619,7 @@ h4 {
     .profilePresentation p {
         width: 100%;
         margin: 0 auto;
-        font-size: 10px;
+        font-size: 3vw;
     }
 
     .profilePictures {
@@ -704,6 +702,7 @@ h4 {
     }
 
     #searchMap {
+        height: auto;
         width: 95vw;
         margin: 5px auto;
         border: none;

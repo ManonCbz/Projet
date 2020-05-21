@@ -6,7 +6,10 @@
 
         <div id="controle">
                 <p>Toutes les photos sont mises à jour !</p>
-                <?=getAllImages()?>
+                <div class='informationAdmin'>
+                    <img class='imgDivAdmin' src='../view/upload/<?= $picture['imgName'] ?>'>
+                    <div class='adminInformationImage'> Latitude : <?= $picture['latitude'] ?><br> Longitude : <?= $picture['longitude'] ?></div>
+                </div>
         </div>
 
         <div id="buttonAdmin">

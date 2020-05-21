@@ -78,7 +78,7 @@ function updateInformations($presentation, $website, $id)
 {
     global $conn;
 
-    $stmt = $conn->prepare('UPDATE `user_information` SET `presentation` = ?, `website` = ? WHERE `user_information`.`id_user` = ?');
+    $stmt = $conn->prepare('UPDATE `user_information` SET presentation = ?, website = ? WHERE user_information.id_user = ?');
     $stmt->bind_param("ssi", $presentation, $website, $id);
     $stmt->execute();
     $stmt->close();
@@ -106,6 +106,14 @@ function addPicture($id, $latitude, $longitude)
     $stmt->execute();
     $stmt->close();
 
+    $sql = $conn->query("SELECT * FROM images WHERE img_name = '$img_name'");
+    $row = $sql->fetch_assoc();
+
+    $stmt2 = $conn->prepare('INSERT INTO image_information (id_user, id_image) VALUES (?, ?)');
+    $stmt2->bind_param("ii", $id, $row['id']);
+    $stmt2->execute();
+    $stmt2->close();
+
     move_uploaded_file($_FILES['image']['tmp_name'], '../view/upload/' . $img_name);
 }
 
@@ -119,6 +127,7 @@ function displayPicture($id)
         echo "<img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'>";
     }
 }
+
 
 // ===========================================  Delete  =========================================== //
 
@@ -159,24 +168,27 @@ function getAllImages()
     $sql = $conn->query('SELECT * FROM images WHERE status = 0 LIMIT 1');
     $row = $sql->fetch_assoc();
 
+    $_SESSION['imageID'] = $row['id'];
+
     if (isset($row['id'])) {
-        echo "<div class='informationAdmin'>
-                <img class='imgDivAdmin' src='../view/upload/" . $row['img_name'] . "'>
-                <div class='adminInformationImage'> Latitude : " . $row['latitude'] . "<br> Longitude : " . $row['longitude'] . "</div>
-              </div>";
-
-        $_SESSION['imageID'] = $row['id'];
-    }
-
-    else {
         ?>
         <style>
             #controle p {
+                display: none;
+            }
+
+            .imgDivAdmin {
+                display: block;
+            }
+
+            .adminInformationImage {
                 display: block;
             }
         </style>
         <?php
     }
+
+    return array("imgName" => $row['img_name'], "latitude" => $row['latitude'], "longitude" => $row['longitude']);
 }
 
 function validateImageAdmin($idImage)
@@ -216,14 +228,31 @@ function searchImage($lat, $lng)
 {
     global $conn;
 
-    $latMin = $lat - 0.005;
-    $latMax = $lat + 0.005;
-    $lngMin = $lng - 0.005;
-    $lngMax = $lng + 0.005;
+    $latMin = $lat - 0.02;
+    $latMax = $lat + 0.02;
+    $lngMin = $lng - 0.1;
+    $lngMax = $lng + 0.1;
 
     $sql = $conn->query("SELECT * FROM `images` WHERE `latitude` BETWEEN $latMin AND $latMax AND `longitude` BETWEEN $lngMin AND $lngMax");
 
+    $tableauNom = array();
+    $tableauLng = array();
+    $tableauLat = array();
+
     while ($row = $sql->fetch_assoc()) {
-        echo "<div><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Lat / Lng :" . $row['latitude'] . $row['longitude'] . "</div>";
+        //echo "<div><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Lat / Lng :" . $row['latitude'] . $row['longitude'] . "</div>";
+        $tableauNom[] = $row['img_name'];
+        $tableauLat[] = $row['latitude'];
+        $tableauLng[] = $row['longitude'];
     }
+
+    // On autorise tout appareil à récupérer les informations, pour que ton app ait accès à ton JSON
+    header('Access-Control-Allow-Origin: *');
+    // On ajoute un header pour être sûr que tout sera bien en JSON avec un charset utf8
+    header('Content-Type: application/json; charset=utf8');
+
+    // On a notre $tableau au-dessus, on va l'afficher, traduit en JSON
+    echo json_encode($tableauNom);
+   // echo json_encode($tableauLat);
+   // echo json_encode($tableauLng);
 }
