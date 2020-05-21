@@ -1,4 +1,4 @@
-<?php $apiKey = "" ?>
+<?php $apiKey = "AIzaSyBed8EKQPvtUtM51QKAJoCmu1cMtjq2l08" ?>
 
 <body id="bodyMap">
 

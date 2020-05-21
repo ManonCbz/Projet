@@ -8,6 +8,10 @@ if (!empty($_SESSION['username'])) {
     header('Location: profile.php');
 }
 
+if(!empty($_SESSION['admin'])){
+    header('Location: admin.php');
+}
+
 $usernamePlaceholder = 'Pseudo';
 $emailPlaceholder = 'Adresse email';
 $passwordPlaceholder = 'Mot de passe';
@@ -151,7 +155,9 @@ if (!empty($_POST)) {
     // Si le mot de passe ne correspond pas à la confirmation
 
     else if ($_POST['password'] != $_POST['passwordConfirm']) {
+        // Ajout de l'erreur au tableau
         $errors['password'] = 'Mdp ne correspond pas';
+
         $passwordPlaceholder = 'Mots de passe différents';
         ?>
         <style>

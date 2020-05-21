@@ -22,3 +22,4 @@ if(isset($_POST['delete'])){
 }
 
 require '../view/adminView.php';
+require '../controller/footer.php';

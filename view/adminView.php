@@ -5,13 +5,8 @@
         <h2>Controle photo</h2>
 
         <div id="controle">
-            <div id="adminImage">
                 <p>Toutes les photos sont mises à jour !</p>
                 <?=getAllImages()?>
-            </div>
-            <div id="adminInformationImage">
-
-            </div>
         </div>
 
         <div id="buttonAdmin">
@@ -24,25 +19,6 @@
                 <button id="deleteAdminButton">Supprimer</button>
             </form>
         </div>
-
-    </div>
-
-    <div id="otherAdmin">
-        <h2>Ajouter un administrateur</h2>
-
-        <form method="post" id="addAdminForm">
-            <input type="text" placeholder="Pseudo (Nom.Prénom)">
-            <input type="email" placeholder="Adresse email">
-            <input type="email" placeholder="Confirmez l'adresse Email">
-            <button>Ajouter l'administrateur</button>
-        </form>
-
-        <h2>Supprimer un administrateur</h2>
-
-        <form method="post" id="addAdminForm">
-            <input type="text" placeholder="Pseudo (Nom.Prénom)">
-            <button>Supprimer l'administrateur</button>
-        </form>
     </div>
 </div>
 </body>

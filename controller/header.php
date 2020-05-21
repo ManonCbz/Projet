@@ -42,8 +42,12 @@ if (session_status() == PHP_SESSION_NONE) {
         ?>
         <div id="navbar">
             <img alt="logo" class="logo" src="../view/pictures/log-camera.png" height="40px" width="40px">
-            <p>Espace administrateur</p>
+            <p id="titleAdmin">Espace administrateur</p>
+
             <div class="iconNavbar">
+                <a href="admin.php"><img class="iconNavbar" src="../view/pictures/picture%20(1).png"></a>
+                <a href="adminMAJ.php"><img class="iconNavbar" title="Paramètres" alt="Gestion"
+                                           src="../view/pictures/icon-settings.png"></a>
                 <a href="logout.php"><img class="iconNavbar" title="Se déconnecter" alt="Se déconnecter"
                                           src="../view/pictures/icon-logout.png"></a>
             </div>

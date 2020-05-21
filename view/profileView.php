@@ -12,7 +12,5 @@
         <?= displayPicture($_SESSION['userID']); ?>
     </div>
 
-    <!-- echo "<img class='imgDiv' src='../view/upload/".$row['img_name']."'>"; -->
-
 </div>
 </body>

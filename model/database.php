@@ -67,9 +67,9 @@ function getInformations($id)
 
     $sql = 'SELECT * FROM `user_information` WHERE id_user = \'' . $id . '\'';
     $result = $conn->query($sql);
-    $row1 = $result->fetch_assoc();
+    $row = $result->fetch_assoc();
 
-    return array("presentationText" => $row1['presentation'], "websiteValue" => $row1['website']);
+    return array("presentationText" => $row['presentation'], "websiteValue" => $row['website']);
 }
 
 // ===========================================  Update  =========================================== //
@@ -96,7 +96,7 @@ function updateEmail($newEmail, $id)
 
 // ===========================================  Display  =========================================== //
 
-function addPicture($id, $img_name, $latitude, $longitude)
+function addPicture($id, $latitude, $longitude)
 {
     global $conn;
     $img_name = date("YmdHis") . $_FILES['image']['name'];
@@ -126,9 +126,9 @@ function deleteAccount($id)
 {
     global $conn;
 
-    $sql1 = $conn->prepare("DELETE FROM users WHERE id=" . $id);
-    $sql1->execute();
-    $sql1->close();
+    $sql = $conn->prepare("DELETE FROM users WHERE id=" . $id);
+    $sql->execute();
+    $sql->close();
 }
 
 function deleteInformations($id)
@@ -146,6 +146,7 @@ function deletePictures($id)
 
     $sql3 = $conn->prepare("DELETE FROM images WHERE id_user=" . $id);
     $sql3->execute();
+    $sql3->execute();
     $sql3->close();
 }
 
@@ -155,15 +156,23 @@ function getAllImages()
 {
     global $conn;
 
-    $sql = $conn->query('SELECT * FROM images WHERE statut = 0 LIMIT 1');
+    $sql = $conn->query('SELECT * FROM images WHERE status = 0 LIMIT 1');
+    $row = $sql->fetch_assoc();
 
-    while ($row = $sql->fetch_assoc()) {
-        echo "<img class='imgDivAdmin' src='../view/upload/" . $row['img_name'] . "'>";
+    if (isset($row['id'])) {
+        echo "<div class='informationAdmin'>
+                <img class='imgDivAdmin' src='../view/upload/" . $row['img_name'] . "'>
+                <div class='adminInformationImage'> Latitude : " . $row['latitude'] . "<br> Longitude : " . $row['longitude'] . "</div>
+              </div>";
+
         $_SESSION['imageID'] = $row['id'];
+    }
+
+    else {
         ?>
         <style>
-            #adminImage p {
-                display: none;
+            #controle p {
+                display: block;
             }
         </style>
         <?php
@@ -174,7 +183,7 @@ function validateImageAdmin($idImage)
 {
     global $conn;
 
-    $stmt = $conn->prepare('UPDATE images SET statut = 1 WHERE id = ?');
+    $stmt = $conn->prepare('UPDATE images SET status= 1 WHERE id = ?');
     $stmt->bind_param("i", $idImage);
     $stmt->execute();
     $stmt->close();
@@ -190,8 +199,21 @@ function deleteImageAdmin($idImage)
     $stmt->close();
 }
 
+//
 
-function searchImage($lat, $lng){
+function addAdminAccount($email)
+{
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->bind_param('s', $email);
+    $stmt->execute();
+
+}
+
+
+function searchImage($lat, $lng)
+{
     global $conn;
 
     $latMin = $lat - 0.005;
@@ -199,18 +221,9 @@ function searchImage($lat, $lng){
     $lngMin = $lng - 0.005;
     $lngMax = $lng + 0.005;
 
-    /*$stmt = $conn->prepare("SELECT * FROM `images` WHERE `latitude` BETWEEN ? AND ? AND `longitude` BETWEEN ? AND ?");
-    $stmt->bind_param("dddd", $latMin, $latMax, $lngMin, $lngMax);
-    $stmt->execute();
-*/
     $sql = $conn->query("SELECT * FROM `images` WHERE `latitude` BETWEEN $latMin AND $latMax AND `longitude` BETWEEN $lngMin AND $lngMax");
 
-    echo $latMin . "<br>";
-    echo $latMax . "<br>";
-    echo $lngMin . "<br>";
-    echo $lngMax . "<br>";
-
     while ($row = $sql->fetch_assoc()) {
-        echo "<div><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Lat / Long :". $row['latitude'] . $row['longitude']."</div>";
+        echo "<div><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Lat / Lng :" . $row['latitude'] . $row['longitude'] . "</div>";
     }
 }

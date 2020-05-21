@@ -6,6 +6,9 @@ require 'header.php';
 if (empty($_SESSION['username'])) {
     header('Location: login.php');
 }
+if (!empty($_SESSION['admin'])){
+    header('Location: admin.php');
+}
 
 
 // =========================================== Verification Formulaire =========================================== //
@@ -46,12 +49,11 @@ if (!empty($_POST)) {
 
     if ($errors === 0) {
 
-        $img_name = $_FILES['image']['name'];
         $userID = $_SESSION['userID'];
         $latitude = $_POST['latitude'];
         $longitude = $_POST['longitude'];
 
-        addPicture($userID, $img_name, $latitude, $longitude);
+        addPicture($userID, $latitude, $longitude);
 
         header('Location: profile.php');
     }

@@ -6,13 +6,20 @@ require '../controller/header.php';
 if (empty($_SESSION['username'])) {
     header('Location: login.php');
 }
+if (!empty($_SESSION['admin'])){
+    header('Location: admin.php');
+}
 
 $newEmailPlaceholder1 = "Nouvelle adresse email";
 $newEmailPlaceholder2 = "Confirmez votre adresse email";
 
+// Changement informations
+
 if (!empty($_POST['presentationSetting'] || $_POST['websiteSetting'])){
     updateInformations($_POST['presentationSetting'], $_POST['websiteSetting'], $_SESSION['userID']);
 }
+
+// Changement Email
 
 if(!empty($_POST['newEmail']) && $_POST['newEmail'] == $_POST['newEmailConf']){
     updateEmail($_POST['newEmail'], $_SESSION['userID']);
@@ -31,6 +38,8 @@ if($_POST['newEmail'] !== $_POST['newEmailConf']){
 }
 
 $informationsUser = getInformations($_SESSION['userID']);
+
+// Suppression de compte
 
 $deletePlaceholder1 = "Mot de passe";
 $deletePlaceholder2 = "Confirmez votre Mot de Passe";

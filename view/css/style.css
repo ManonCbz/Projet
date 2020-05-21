@@ -124,6 +124,10 @@ input:focus {
     margin: -7px 15px;
 }
 
+#titleAdmin{
+    font-size: 20px;
+}
+
 /* ================================= Footer ================================= */
 /* Uniquement pour le responsive */
 
@@ -166,21 +170,21 @@ input:focus {
     flex-wrap: wrap;
 }
 
-.imgDiv{
+.imgDiv {
     height: 23.5vh;
     width: 11vw;
     border: 1px solid black;
     margin: 24px;
 }
 
-.imgDisplay{
+.imgDisplay {
     width: 100%;
     height: 100%;
 }
 
 /* ================================= Settings ================================= */
 
-.bodySetting{
+.bodySetting {
     overflow: hidden;
 }
 
@@ -232,7 +236,7 @@ h3 {
     background-color: #b1b1b1;
 }
 
-#websiteSetting{
+#websiteSetting {
     width: 90%;
     margin: 2vh 5%;
     height: 30px;
@@ -240,21 +244,21 @@ h3 {
     border: 1px solid gray;
 }
 
-.newEmail{
+.newEmail {
     width: 50%;
     margin: 5px 0;
 }
 
-.settingOther button{
+.settingOther button {
     width: 50px;
 
 }
 
-.settingOther *{
+.settingOther * {
     margin: 0 5vw;
 }
 
-.settingOther form *{
+.settingOther form * {
     margin: 5px 0;
 }
 
@@ -265,7 +269,7 @@ h3 {
     text-align: center;
 }
 
-#buttonDelete{
+#buttonDelete {
     width: 80%;
     margin: 5px auto;
 }
@@ -273,15 +277,15 @@ h3 {
 
 /* ================================= Add Picture ================================= */
 
-#addPictureBody{
+#addPictureBody {
     overflow: hidden;
 }
 
-h1{
+h1 {
     text-align: center;
 }
 
-#addPictureViewport{
+#addPictureViewport {
     overflow: auto;
     margin: 0 auto;
     border: 1px solid black;
@@ -289,12 +293,12 @@ h1{
     width: 70vw;
 }
 
-form{
+form {
     display: flex;
     flex-direction: column;
 }
 
-input[type=file]{
+input[type=file] {
     border: 1px solid gray;
     padding: 5px;
     width: 20vw;
@@ -307,7 +311,7 @@ input[type=number]::-webkit-inner-spin-button {
     margin: 0;
 }
 
-#addPictureViewport button{
+#addPictureViewport button {
     margin: 0 auto;
     width: 86px;
     padding: 10px;
@@ -327,35 +331,35 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
-#latLng{
+#latLng {
     margin: 4vh;
 }
 
-h4{
+h4 {
     margin-top: 10px;
 }
 
-.titleCat{
+.titleCat {
     margin: 0 4vh;
     font-size: 25px;
 }
 
-.categories{
+.categories {
     margin-left: 4vh;
 }
 
 /* ================================= Search Map ================================= */
 
-#bodyMap{
-    overflow: hidden;
+#bodyMap {
+    /*overflow: hidden;*/
 }
 
-#viewportMap{
+#viewportMap {
     display: flex;
     justify-content: center;
 }
 
-#searchMap{
+#searchMap {
     height: 87vh;
     margin: 10px;
     width: 30vw;
@@ -363,12 +367,12 @@ h4{
     border: black 2px solid;
 }
 
-#map{
+#map {
     height: 90vh;
     width: 70vw;
 }
 
-.searchBar{
+.searchBar {
     border: 1px solid black;
     border-radius: 10px;
     width: 80%;
@@ -379,14 +383,14 @@ h4{
     align-items: center;
 }
 
-.searchBar img{
+.searchBar img {
     height: 80%;
     width: auto;
     opacity: 60%;
     margin-left: 1vw;
 }
 
-.searchBar input{
+.searchBar input {
     width: 85%;
     height: 100%;
     border-radius: 10px;
@@ -397,98 +401,133 @@ h4{
 
 /* ================================= Admin ================================= */
 
-#adminBody{
+#adminBody {
     overflow: hidden;
 }
 
-#adminViewport{
+#adminViewport {
     display: flex;
     justify-content: space-around;
     margin: 5vh 0;
 }
 
-#acceptPict{
+#acceptPict {
     border: 1px solid black;
     height: 80vh;
     width: 50vw;
 }
 
-#otherAdmin{
-    border: 1px solid black;
-    height: 80vh;
-    width: 30vw;
+#controle {
+    margin: 5vh 0;
+    width: 100%;
+    height: 315px;
 }
 
-#controle{
+#controle p {
+    color: green;
+    display: none;
+    text-align: center;
+    margin: 0 auto;
+    padding: 120px;
+}
+
+.informationAdmin {
     display: flex;
     justify-content: space-around;
-    margin: 5vh 0;
 }
 
-#adminImage{
+.imgDivAdmin {
+    width: 250px;
+    max-height: 320px;
+}
+
+.adminInformationImage {
     width: 35%;
-    height: 25vh;
 }
 
-#adminInformationImage{
-    border: 1px solid black;
-    width: 50%;
-    height: 45vh;
-}
-
-#buttonAdmin{
+#buttonAdmin {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
 
-#acceptAdminButton{
+#acceptAdminButton {
     padding: 10px;
-    margin-right: 5vw;
     background: #76cc76;
     border-radius: 20px;
     border: 1px solid green;
     cursor: pointer;
 }
 
-#acceptAdminButton:hover{
+#acceptAdminButton:hover {
     background: #cfefcf;
 }
 
-#deleteAdminButton{
+#deleteAdminButton {
     padding: 10px;
-    margin-right: 5vw;
     background: #f36b6b;
     border-radius: 20px;
     border: 1px solid red;
     cursor: pointer;
 }
 
-#deleteAdminButton:hover{
+#deleteAdminButton:hover {
     background: #f7b1b1;
 }
 
-#addAdminForm{
-    width: 80%;
+#buttonMAJAdmin {
+    height: 30px;
+    background: #c4c4c4;
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    box-shadow: 2px 2px 2px grey;
+    padding: 10px;
+    border-radius: 25px;
+}
+
+#buttonMAJAdmin:hover {
+    background: #e8e8e8;
+}
+
+/* ================================= Admin MAJ ================================= */
+
+#ownMAJ, #otherAdmin {
+    border: 1px solid black;
+    height: 80vh;
+    width: 45%;
+    margin-top: 5vh;
+}
+
+#adminMAJviewport {
+    display: flex;
+    justify-content: space-around;
+}
+
+#updatePasswordAdmin, #updateEmailAdmin, #addAdmin, #deleteAdmin {
+    display: grid;
+    width: 50%;
     margin: 0 auto;
 }
 
-#addAdminForm * {
-    margin: 1vh;
+#ownMAJ button {
+    width: 50px;
+    margin: 15px auto;
 }
 
-#addAdminForm button{
-    width: 45%;
-    margin: 3vh auto;
+#otherAdmin button {
+    width: 80px;
+    margin: 15px auto;
 }
 
-.imgDivAdmin{
-    width: 100%;
+#ownMAJ a {
+    position: absolute;
+    left: 60px;
+    top: 128px;
+    text-decoration: none;
+    border: 1px solid;
+    padding: 5px;
+    color: #3F51B5;
 }
-
-#adminImage p{
-    color: green;
-}
-
 
 /* ============================================================================== */
 /* ================================= Responsive ================================= */
@@ -529,6 +568,10 @@ h4{
         margin-left: 20px;
     }
 
+    #navbar p{
+        font-size: 12px;
+    }
+
     .iconNavbar {
         margin: 0 0;
         display: inline-block;
@@ -550,7 +593,7 @@ h4{
         height: 25px;
     }
 
-    #designFooter{
+    #designFooter {
         display: none;
     }
 
@@ -589,14 +632,13 @@ h4{
         border: none;
     }
 
-    .imgDiv{
+    .imgDiv {
         height: 22.5vh;
         width: 40vw;
         margin: 7px;
     }
 
     /* ================================= Settings ================================= */
-
     .bodySetting {
         overflow: auto;
         margin-bottom: 70px;
@@ -631,72 +673,143 @@ h4{
         margin: 0 auto;
     }
 
-    #websiteSetting{
+    #websiteSetting {
         margin: 0 auto;
     }
 
-    .settingViewport button{
+    .settingViewport button {
         margin: 2vh auto;
         width: 20vw;
     }
 
-    .newEmail{
+    .newEmail {
         margin: 5px auto;
         width: 100%;
     }
 
 
-
     /* ================================= Search Map ================================= */
-
-    #bodyMap{
+    #bodyMap {
         overflow: auto;
     }
 
-    #viewportMap{
+    #viewportMap {
         display: flex;
         flex-direction: column-reverse;
     }
 
-    #map{
+    #map {
         height: 65vh;
         width: 100vw;
     }
 
-    #searchMap{
+    #searchMap {
         width: 95vw;
         margin: 5px auto;
         border: none;
     }
 
     /* ================================= Add picture ================================= */
-
-    #addPictureBody{
-        margin-bottom: 15px;
+    #addPictureBody {
         overflow: auto;
     }
 
-    #addPictureViewport{
+    #addPictureViewport {
         border: none;
         width: 95vw;
+        margin-bottom: 80px;
+        height: 100%;
+        overflow: hidden;
     }
 
-    input[type=file]{
+    input[type=file] {
         width: 81vw;
         margin: 0 4vh;
     }
 
 
-    #latLng{
+    #latLng {
         display: grid;
     }
 
-    .titleCat{
+    .titleCat {
         margin: 0 4vh;
     }
 
-    #addPictureViewport button{
+    #addPictureViewport button {
         margin: 4vh auto;
     }
 
+    /* ================================= Admin ================================= */
+
+    #adminBody {
+        overflow: auto;
+    }
+
+    #adminViewport {
+        display: block;
+    }
+
+    #acceptPict {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    #controle {
+        margin: 3vh auto;
+    }
+
+    #controle p {
+        padding: 85px;
+    }
+
+    .informationAdmin {
+        display: block;
+        text-align: center;
+    }
+
+    .adminInformationImage {
+        margin: 20px auto;
+        font-size: 15px;
+    }
+
+    #buttonMAJAdmin {
+        margin: 20vw;
+    }
+
+    .imgDivAdmin {
+        max-height: 200px;
+        width: auto;
+    }
+
+    #buttonAdmin{
+        margin-top: 6vh;
+    }
+
+    #titleAdmin{
+        font-size: 15px;
+    }
+
+    /* ================================= Admin MAJ ================================= */
+
+    #ownMAJ, #otherAdmin {
+        border: none;
+        height: auto;
+        width: 100%;
+    }
+
+    #adminMAJviewport {
+        display: block;
+    }
+
+    #ownMAJ a {
+        position: initial;
+        margin-left: 8vw;
+    }
+
+    #updatePasswordAdmin, #updateEmailAdmin, #addAdmin, #deleteAdmin{
+        width: 70%;
+    }
 }
+
