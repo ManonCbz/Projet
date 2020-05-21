@@ -33,7 +33,7 @@ if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) 
             $_SESSION['admin'] = $_POST['username'];
 
             header('Location: admin.php');
-        }
+            }
 
     }
 

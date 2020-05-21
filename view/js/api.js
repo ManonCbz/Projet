@@ -1,13 +1,12 @@
 // Fonction d'initialisation de la carte google Maps
+var map;
 
 function initMap() {
-    //Coordonneés de Paris
     var Paris = {lat: 48.852969, lng: 2.349903};
 
-    // Ajout de la carte dans la div appropriée
-    var map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), {
         zoom: 13,
-        center: Paris
+        center: Paris,
     });
 
     // Mise en place de l'input de recherche
@@ -27,7 +26,8 @@ function initMap() {
             var lng = place.geometry.location.lng();
 
             bounds.extend(place.geometry.location);
-            showImage(lat, lng);;
+            showImage(lat, lng);
+            ;
         });
 
         // Affiche les données dans la carte précedemment déclaré (var map)
@@ -36,21 +36,27 @@ function initMap() {
 
     });
 
-    function addMarker(location) {
-        marker = new google.maps.Marker({
-            position: location,
-            map: map
-        });
-        marker.setMap(map);
+    // Create a <script> tag and set the USGS URL as the source.
+    var script = document.createElement('script');
+    // This example uses a local copy of the GeoJSON stored at
+    // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+    script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+    document.getElementsByTagName('head')[0].appendChild(script);
 
+
+    // Loop through the results array and place a marker for each
+    // set of coordinates.
+    window.eqfeed_callback = function (results) {
+        for (var i = 0; i < results.features.length; i++) {
+            var coords = results.features[i].geometry.coordinates;
+            var latLng = new google.maps.LatLng(coords[1], coords[0]);
+            var marker = new google.maps.Marker({
+                position: latLng,
+                map: map
+            });
+        }
     }
 
-    function TestMarker() {
-        var Paris = {lat: 48.852969, lng: 2.349903};
-        addMarker(Paris);
-    }
-
-    TestMarker();
 }
 
 function showImage(lat, lng) {
@@ -61,18 +67,12 @@ function showImage(lat, lng) {
 
         if (this.readyState == 4 && this.status == 200) {
 
-            //document.getElementById("txtHint").innerHTML = this.responseText;
-            // Quand on aura reçu notre JSON, on pourra le traduire en objet JS
-            var json = JSON.parse(xhr.responseText);
-            // json['case1'] vaut donc 'valeur1', etc
-            document.getElementById('txtHint').innerText = json;
-            console.log(json);
+            document.getElementById("txtHint").innerHTML = this.responseText;
+
         }
     }
 
     xhttp.open("GET", "searchImage.php?lat=" + lat + "&lng=" + lng, true);
     xhttp.send();
 }
-
-
 

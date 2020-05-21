@@ -148,7 +148,7 @@ input:focus {
 
 .profilePresentation {
     width: 20%;
-    border: 1px solid black;
+    border: thin solid black;
     height: 70vh;
     background: #d0d0d0;
 }
@@ -160,7 +160,7 @@ input:focus {
 
 .profilePictures {
     width: 65%;
-    border: 1px solid black;
+    border: thin solid black;
     height: 70vh;
     overflow: auto;
     display: flex;
@@ -237,7 +237,7 @@ h3 {
     margin: 2vh 5%;
     height: 30px;
     border-radius: 10px;
-    border: 1px solid gray;
+    border: thin solid gray;
 }
 
 .newEmail {
@@ -284,7 +284,7 @@ h1 {
 #addPictureViewport {
     overflow: auto;
     margin: 0 auto;
-    border: 1px solid black;
+    border: thin solid black;
     height: 70vh;
     width: 70vw;
 }
@@ -295,7 +295,7 @@ form {
 }
 
 input[type=file] {
-    border: 1px solid gray;
+    border: thin solid gray;
     padding: 5px;
     width: 20vw;
     margin: 4vh;
@@ -312,7 +312,7 @@ input[type=number]::-webkit-inner-spin-button {
     width: 86px;
     padding: 10px;
     border-radius: 15px;
-    border: 1px solid #535353;
+    border: thin solid #535353;
     font-size: 17px;
     cursor: pointer;
     box-shadow: 2px 2px 2px grey;
@@ -320,7 +320,7 @@ input[type=number]::-webkit-inner-spin-button {
 
 #addPictureViewport button:hover {
     color: gray;
-    border: 1px solid #e1e1e1;
+    border: thin solid #e1e1e1;
 }
 
 input[type=number] {
@@ -369,7 +369,7 @@ h4 {
 }
 
 .searchBar {
-    border: 1px solid black;
+    border: thin solid black;
     border-radius: 10px;
     width: 80%;
     height: 5vh;
@@ -408,7 +408,7 @@ h4 {
 }
 
 #acceptPict {
-    border: 1px solid black;
+    border: thin solid black;
     height: 80vh;
     width: 50vw;
 }
@@ -452,7 +452,7 @@ h4 {
     padding: 10px;
     background: #76cc76;
     border-radius: 20px;
-    border: 1px solid green;
+    border: thin solid green;
     cursor: pointer;
 }
 
@@ -464,7 +464,7 @@ h4 {
     padding: 10px;
     background: #f36b6b;
     border-radius: 20px;
-    border: 1px solid red;
+    border: thin solid red;
     cursor: pointer;
 }
 
@@ -477,7 +477,7 @@ h4 {
     background: #c4c4c4;
     text-decoration: none;
     color: black;
-    border: 1px solid black;
+    border: thin solid black;
     box-shadow: 2px 2px 2px grey;
     padding: 10px;
     border-radius: 25px;
@@ -490,7 +490,7 @@ h4 {
 /* ================================= Admin MAJ ================================= */
 
 #ownMAJ, #otherAdmin {
-    border: 1px solid black;
+    border: thin solid black;
     height: 80vh;
     width: 45%;
     margin-top: 5vh;
@@ -522,7 +522,7 @@ h4 {
     left: 60px;
     top: 128px;
     text-decoration: none;
-    border: 1px solid;
+    border: thin solid;
     padding: 5px;
     color: #3F51B5;
 }
@@ -682,6 +682,11 @@ h4 {
 
     .newEmail {
         margin: 5px auto;
+        width: 100%;
+    }
+
+    #deleteAccount{
+        margin: 10vh auto;
         width: 100%;
     }
 

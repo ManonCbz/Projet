@@ -12,6 +12,5 @@ if (!empty($_SESSION['admin'])){
 }
 
 
-
 require '../view/searchView.php';
 require 'footer.php';

@@ -235,24 +235,13 @@ function searchImage($lat, $lng)
 
     $sql = $conn->query("SELECT * FROM `images` WHERE `latitude` BETWEEN $latMin AND $latMax AND `longitude` BETWEEN $lngMin AND $lngMax");
 
-    $tableauNom = array();
-    $tableauLng = array();
-    $tableauLat = array();
+    $tableau = array();
 
     while ($row = $sql->fetch_assoc()) {
-        //echo "<div><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Lat / Lng :" . $row['latitude'] . $row['longitude'] . "</div>";
-        $tableauNom[] = $row['img_name'];
-        $tableauLat[] = $row['latitude'];
-        $tableauLng[] = $row['longitude'];
+        echo "<div><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Lat / Lng :" . $row['latitude'] . $row['longitude'] . "</div>";
+        $tableau[] = $row['img_name']. $row['latitude']. $row['longitude'];
     }
 
-    // On autorise tout appareil à récupérer les informations, pour que ton app ait accès à ton JSON
-    header('Access-Control-Allow-Origin: *');
-    // On ajoute un header pour être sûr que tout sera bien en JSON avec un charset utf8
-    header('Content-Type: application/json; charset=utf8');
-
     // On a notre $tableau au-dessus, on va l'afficher, traduit en JSON
-    echo json_encode($tableauNom);
-   // echo json_encode($tableauLat);
-   // echo json_encode($tableauLng);
+    echo json_encode($tableau);
 }
