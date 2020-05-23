@@ -4,10 +4,14 @@ require 'header.php';
 // ===== verification de connexion ===== //
 
 if (empty($_SESSION['username'])) {
-    header('Location: login.php');
+    ?>
+    <script language="Javascript">  document.location.replace("profile.php"); </script>
+    <?php
 }
 if (!empty($_SESSION['admin'])){
-    header('Location: admin.php');
+    ?>
+    <script language="Javascript">  document.location.replace("admin.php"); </script>
+    <?php
 }
 
 
@@ -55,16 +59,12 @@ if (!empty($_POST)) {
 
         addPicture($userID, $latitude, $longitude);
 
-        header('Location: profile.php');
+        ?>
+        <script language="Javascript">  document.location.replace("profile.php"); </script>
+        <?php
     }
 }
 
-echo $_POST['day'];
-
-echo $_POST['placeCity'];
-echo $_POST['placeSea'];
-echo $_POST['placeCountryside'];
-echo $_POST['placeMountain'];
 
 require '../view/addPictureView.php';
 require 'footer.php';

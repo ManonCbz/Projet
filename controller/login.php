@@ -5,10 +5,14 @@ require 'header.php';
 // ===== verification de connexion (Si la session est déjà ouverte -> profile.php) ===== //
 
 if (!empty($_SESSION['username'])) {
-    header('Location: profile.php');
+    ?>
+    <script language="Javascript">  document.location.replace("profile.php"); </script>
+    <?php
 }
 if(!empty($_SESSION['admin'])){
-    header('Location: admin.php');
+    ?>
+    <script language="Javascript">  document.location.replace("admin.php"); </script>
+    <?php
 }
 
 
@@ -26,14 +30,19 @@ if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) 
             $_SESSION['username'] = $_POST['username'];
 
             getID($_SESSION['username']);
-            header('Location: profile.php');
+
+            ?>
+            <script language="Javascript">  document.location.replace("profile.php"); </script>
+            <?php
         }
 
         if($user['type'] == 1){
             $_SESSION['admin'] = $_POST['username'];
 
-            header('Location: admin.php');
-            }
+            ?>
+            <script language="Javascript">  document.location.replace("admin.php"); </script>
+            <?php
+        }
 
     }
 

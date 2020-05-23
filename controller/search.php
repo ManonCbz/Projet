@@ -5,10 +5,14 @@ require 'header.php';
 // ===== verification de connexion ===== //
 
 if (empty($_SESSION['username'])) {
-    header('Location: login.php');
+    ?>
+    <script language="Javascript">  document.location.replace("login.php"); </script>
+    <?php
 }
 if (!empty($_SESSION['admin'])){
-    header('Location: admin.php');
+    ?>
+    <script language="Javascript">  document.location.replace("admin.php"); </script>
+    <?php
 }
 
 

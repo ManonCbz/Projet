@@ -5,8 +5,11 @@ require 'header.php';
 // ===== verification de connexion admin ===== //
 
 if (empty($_SESSION['admin'])) {
-    header('Location: login.php');
+    ?>
+    <script language="Javascript">  document.location.replace("login.php"); </script>
+    <?php
 }
+
 
 $picture = getAllImages();
 

@@ -1,5 +1,3 @@
-<?php $apiKey = "" ?>
-
 <body id="bodyMap">
 
 <div id="viewportMap">
@@ -15,6 +13,6 @@
 </div>
 <div id="txtHint"></div>
 <script src="../view/js/api.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<?=$apiKey?>&libraries=places&callback=initMap"
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBed8EKQPvtUtM51QKAJoCmu1cMtjq2l08&libraries=places&callback=initMap"
         async defer></script>
 </body>

@@ -109,6 +109,7 @@ function addPicture($id, $latitude, $longitude)
     $sql = $conn->query("SELECT * FROM images WHERE img_name = '$img_name'");
     $row = $sql->fetch_assoc();
 
+
     $stmt2 = $conn->prepare('INSERT INTO image_information (id_user, id_image) VALUES (?, ?)');
     $stmt2->bind_param("ii", $id, $row['id']);
     $stmt2->execute();
@@ -165,7 +166,7 @@ function getAllImages()
 {
     global $conn;
 
-    $sql = $conn->query('SELECT * FROM images WHERE status = 0 LIMIT 1');
+    $sql = $conn->query('SELECT * FROM images WHERE status = 0 ORDER BY id LIMIT 1');
     $row = $sql->fetch_assoc();
 
     $_SESSION['imageID'] = $row['id'];
@@ -205,10 +206,8 @@ function deleteImageAdmin($idImage)
 {
     global $conn;
 
-    $stmt = $conn->prepare("DELETE FROM images WHERE id = ?");
-    $stmt->bind_param('i', $idImage);
-    $stmt->execute();
-    $stmt->close();
+    $conn->query("DELETE FROM images WHERE id = $idImage");
+    $conn->query("DELETE FROM image_information WHERE id_image = $idImage");
 }
 
 //

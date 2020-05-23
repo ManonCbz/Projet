@@ -1,15 +1,18 @@
 <?php
-
 require '../controller/header.php';
 
 // ===== verification de connexion (Si la session est déjà ouverte -> profile.php) ===== //
 
 if (!empty($_SESSION['username'])) {
-    header('Location: profile.php');
+    ?>
+    <script language="Javascript">  document.location.replace("profile.php"); </script>
+    <?php
 }
 
 if(!empty($_SESSION['admin'])){
-    header('Location: admin.php');
+    ?>
+    <script language="Javascript">  document.location.replace("admin.php"); </script>
+    <?php
 }
 
 $usernamePlaceholder = 'Pseudo';
@@ -189,10 +192,16 @@ if (!empty($_POST)) {
         createInformation($username);
         getID($username);
 
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
 
         $_SESSION['username'] = $username;
-        header('Location: profile.php');
+
+        ?>
+        <script language="Javascript">  document.location.replace("profile.php"); </script>
+        <?php
     }
 }
 

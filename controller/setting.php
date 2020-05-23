@@ -4,10 +4,14 @@ require '../controller/header.php';
 // ===== verification de connexion ===== //
 
 if (empty($_SESSION['username'])) {
-    header('Location: login.php');
+    ?>
+    <script language="Javascript">  document.location.replace("login.php"); </script>
+    <?php
 }
 if (!empty($_SESSION['admin'])){
-    header('Location: admin.php');
+    ?>
+    <script language="Javascript">  document.location.replace("admin.php"); </script>
+    <?php
 }
 
 $newEmailPlaceholder1 = "Nouvelle adresse email";
@@ -15,7 +19,7 @@ $newEmailPlaceholder2 = "Confirmez votre adresse email";
 
 // Changement informations
 
-if (!empty($_POST['presentationSetting'] || $_POST['websiteSetting'])){
+if (!empty($_POST['presentationSetting']) || !empty($_POST['presentationSetting'])){
     updateInformations($_POST['presentationSetting'], $_POST['websiteSetting'], $_SESSION['userID']);
 }
 
@@ -25,7 +29,7 @@ if(!empty($_POST['newEmail']) && $_POST['newEmail'] == $_POST['newEmailConf']){
     updateEmail($_POST['newEmail'], $_SESSION['userID']);
 }
 
-if($_POST['newEmail'] !== $_POST['newEmailConf']){
+if(!empty($_POST['newEmail']) && $_POST['newEmail'] !== $_POST['newEmailConf']){
     $newEmailPlaceholder1 = "L'adresse email ne correspond pas";
     $newEmailPlaceholder2 = "L'adresse email ne correspond pas";
     ?>
@@ -60,7 +64,9 @@ if(!empty($_POST['password']) && $_POST['password'] == $_POST['confPassword']){
 
         session_destroy();
 
-        header('Location: login.php');
+        ?>
+        <script language="Javascript">  document.location.replace("login.php"); </script>
+        <?php
 
     }
     else{
@@ -76,16 +82,16 @@ if(!empty($_POST['password']) && $_POST['password'] == $_POST['confPassword']){
     }
 }
 
-if ($_POST['password'] !== $_POST['confPassword']){
-        $deletePlaceholder1 = "Mot de passe different";
-        $deletePlaceholder2 = "Mot de passe different";
-        ?>
-        <style>
-            .deleteInput::placeholder {
-                color: red;
-                font-style: italic
-            }
-        </style><?php
+if (!empty($_POST['password']) && $_POST['password'] !== $_POST['confPassword']){
+    $deletePlaceholder1 = "Mot de passe different";
+    $deletePlaceholder2 = "Mot de passe different";
+    ?>
+    <style>
+        .deleteInput::placeholder {
+            color: red;
+            font-style: italic
+        }
+    </style><?php
 }
 
 require '../view/settingView.php';
