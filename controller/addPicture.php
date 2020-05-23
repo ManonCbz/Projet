@@ -5,12 +5,12 @@ require 'header.php';
 
 if (empty($_SESSION['username'])) {
     ?>
-    <script language="Javascript">  document.location.replace("profile.php"); </script>
+    <script> document.location.replace("profile.php"); </script>
     <?php
 }
 if (!empty($_SESSION['admin'])){
     ?>
-    <script language="Javascript">  document.location.replace("admin.php"); </script>
+    <script> document.location.replace("admin.php"); </script>
     <?php
 }
 
@@ -32,7 +32,7 @@ if (!empty($_POST)) {
         ?>
         <style>
             input[type=file]{
-                border: 1px solid red;
+                border: thin solid red;
             }
         </style>
         <?php
@@ -45,7 +45,18 @@ if (!empty($_POST)) {
         ?>
         <style>
             #latInput, #lngInput{
-                border: 1px solid red;
+                border: thin solid red;
+            }
+        </style>
+        <?php
+    }
+
+    if(empty($_POST['day'])){
+        $errors++;
+        ?>
+        <style>
+            .day label{
+                color: red;
             }
         </style>
         <?php
@@ -53,14 +64,29 @@ if (!empty($_POST)) {
 
     if ($errors === 0) {
 
-        $userID = $_SESSION['userID'];
-        $latitude = $_POST['latitude'];
-        $longitude = $_POST['longitude'];
+        $city = 0;
+        $countryside = 0;
+        $sea = 0;
+        $mountain = 0;
 
-        addPicture($userID, $latitude, $longitude);
+        if(isset($_POST['placeCity'])){
+            $city = 1;
+        }
+        if(isset($_POST['placeCountryside'])){
+            $countryside = 1;
+        }
+        if(isset($_POST['placeSea'])){
+            $sea = 1;
+        }
+        if(isset($_POST['placeMountain'])){
+            $mountain = 1;
+        }
+
+
+        addPicture($_SESSION['userID'], $_POST['latitude'], $_POST['longitude'], $city, $countryside, $sea, $mountain, $_POST['day']);
 
         ?>
-        <script language="Javascript">  document.location.replace("profile.php"); </script>
+        <script> document.location.replace("profile.php"); </script>
         <?php
     }
 }

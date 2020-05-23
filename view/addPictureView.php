@@ -16,7 +16,7 @@
 
         <div class="categories">
             <h4>Paysage :</h4>
-            <input type="checkbox" id="ville" name="placeCity" value="ville" checked>
+            <input type="checkbox" id="ville" name="placeCity" value="ville">
             <label for="ville">Ville</label>
 
             <input type="checkbox" id="campagne" name="placeCountryside" value="campagne">
@@ -29,18 +29,18 @@
             <label for="montagne">Montagne</label>
         </div>
 
-        <div class="categories">
+        <div class="categories day">
             <h4>Journée :</h4>
-            <input type="radio" id="aurore" name="day" value="aurore" checked>
+            <input type="radio" id="aurore" name="day" value="dawn">
             <label for="aurore">Aurore</label>
 
-            <input type="radio" id="journée" name="day" value="journée">
+            <input type="radio" id="journée" name="day" value="day">
             <label for="journée">Journée</label>
 
-            <input type="radio" id="Crepuscule" name="day" value="Crepuscule">
+            <input type="radio" id="Crepuscule" name="day" value="dusk">
             <label for="Crepuscule">Crepuscule</label>
 
-            <input type="radio" id="nuit" name="day" value="nuit">
+            <input type="radio" id="nuit" name="day" value="night">
             <label for="nuit">Nuit</label>
         </div>
         <button type="submit">Envoyer</button>

@@ -5,12 +5,12 @@ require '../controller/header.php';
 
 if (empty($_SESSION['username'])) {
     ?>
-    <script language="Javascript">  document.location.replace("login.php"); </script>
+    <script> document.location.replace("login.php"); </script>
     <?php
 }
 if (!empty($_SESSION['admin'])){
     ?>
-    <script language="Javascript">  document.location.replace("admin.php"); </script>
+    <script> document.location.replace("admin.php"); </script>
     <?php
 }
 
@@ -26,7 +26,28 @@ if (!empty($_POST['presentationSetting']) || !empty($_POST['presentationSetting'
 // Changement Email
 
 if(!empty($_POST['newEmail']) && $_POST['newEmail'] == $_POST['newEmailConf']){
+
+    $stmt = $conn->prepare('SELECT id FROM users WHERE email = ?');
+    $stmt->bind_param("s", $_POST['newEmail']);
+    $stmt->execute();
+    $mail = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
+
+    if ($mail) {
+        $newEmailPlaceholder1 = 'Cet email est déjà utilisé';
+        $newEmailPlaceholder2 = 'Cet email est déjà utilisé';
+        ?>
+        <style>
+            .newEmail::placeholder {
+                color: red;
+                font-style: italic
+            }
+        </style>
+        <?php
+    }
+    else{
     updateEmail($_POST['newEmail'], $_SESSION['userID']);
+    }
 }
 
 if(!empty($_POST['newEmail']) && $_POST['newEmail'] !== $_POST['newEmailConf']){
@@ -65,7 +86,7 @@ if(!empty($_POST['password']) && $_POST['password'] == $_POST['confPassword']){
         session_destroy();
 
         ?>
-        <script language="Javascript">  document.location.replace("login.php"); </script>
+        <script> document.location.replace("login.php"); </script>
         <?php
 
     }

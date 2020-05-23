@@ -15,6 +15,23 @@ if (!empty($_SESSION['admin'])){
     <?php
 }
 
+$city = 0;
+$countryside = 0;
+$sea = 0;
+$mountain = 0;
+
+if(isset($_POST['placeCity'])){
+    $city = 1;
+}
+if(isset($_POST['placeCountryside'])){
+    $countryside = 1;
+}
+if(isset($_POST['placeSea'])){
+    $sea = 1;
+}
+if(isset($_POST['placeMountain'])){
+    $mountain = 1;
+}
 
 require '../view/searchView.php';
 require 'footer.php';

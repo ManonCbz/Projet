@@ -6,7 +6,7 @@ require 'header.php';
 
 if (empty($_SESSION['admin'])) {
     ?>
-    <script language="Javascript">  document.location.replace("login.php"); </script>
+    <script> document.location.replace("login.php"); </script>
     <?php
 }
 

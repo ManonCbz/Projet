@@ -2,12 +2,12 @@
 
 // Connexion à la base de donnée //
 
-$conn = new Mysqli ("localhost", "root", "");
+$conn = new Mysqli ("localhost", "id13800576_manon", "rpQd#POqW5s_0VEH");
 
 if ($conn->connect_error) {
     echo $conn->connect_error;
 } else {
-    $conn->select_db("project-spot");
+    $conn->select_db("id13800576_projetspot");
 }
 
 // =========================================== Function =========================================== //
@@ -96,7 +96,7 @@ function updateEmail($newEmail, $id)
 
 // ===========================================  Display  =========================================== //
 
-function addPicture($id, $latitude, $longitude)
+function addPicture($id, $latitude, $longitude, $city, $countryside, $sea, $mountain, $day)
 {
     global $conn;
     $img_name = date("YmdHis") . $_FILES['image']['name'];
@@ -110,8 +110,8 @@ function addPicture($id, $latitude, $longitude)
     $row = $sql->fetch_assoc();
 
 
-    $stmt2 = $conn->prepare('INSERT INTO image_information (id_user, id_image) VALUES (?, ?)');
-    $stmt2->bind_param("ii", $id, $row['id']);
+    $stmt2 = $conn->prepare('INSERT INTO image_information (id_user, id_image, city, countryside, sea, mountain, day) VALUES (?, ?, ?, ?, ?, ?, ?)');
+    $stmt2->bind_param("iiiiiis", $id, $row['id'], $city, $countryside, $sea, $mountain, $day);
     $stmt2->execute();
     $stmt2->close();
 
@@ -232,15 +232,38 @@ function searchImage($lat, $lng)
     $lngMin = $lng - 0.1;
     $lngMax = $lng + 0.1;
 
-    $sql = $conn->query("SELECT * FROM `images` WHERE `latitude` BETWEEN $latMin AND $latMax AND `longitude` BETWEEN $lngMin AND $lngMax");
+    $sql = $conn->query("SELECT * FROM `images` LEFT JOIN users ON (users.id = images.id_user) LEFT JOIN user_information ON (user_information.id_user = users.id) LEFT JOIN image_information ON (image_information.id_image = images.id)  WHERE `latitude` BETWEEN $latMin AND $latMax AND `longitude` BETWEEN $lngMin AND $lngMax");
 
     $tableau = array();
 
     while ($row = $sql->fetch_assoc()) {
-        echo "<div><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Lat / Lng :" . $row['latitude'] . $row['longitude'] . "</div>";
-        $tableau[] = $row['img_name']. $row['latitude']. $row['longitude'];
+        echo "<div class='divImgSearch'><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Latitude : " . $row['latitude'] ."<br> Longitude :". $row['longitude'] . "<br>" . $row['username'] . "</div>";
+        $tableau[] = $row['img_name'] . $row['latitude'] . $row['longitude'] . $row['username'] . $row['presentation'] . $row['website'];
     }
 
     // On a notre $tableau au-dessus, on va l'afficher, traduit en JSON
     echo json_encode($tableau);
+}
+
+function displayImageSearch()
+{
+    global $conn;
+
+    $sql = $conn->query("SELECT * FROM images LEFT JOIN users ON (users.id = images.id_user) LEFT JOIN user_information ON (user_information.id_user = users.id) LEFT JOIN image_information ON (image_information.id_image = images.id) 
+");
+
+    while ($row = $sql->fetch_assoc()) {
+        echo "<div class='divImgSearch'><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Latitude : " . $row['latitude'] ."<br> Longitude :". $row['longitude'] . "<br>" . $row['username'] . "</div>";
+    }
+}
+
+function displayImageSearchCat($day)
+{
+    global $conn;
+
+    $sql = $conn->query("SELECT * FROM images LEFT JOIN users ON (users.id = images.id_user) LEFT JOIN user_information ON (user_information.id_user = users.id) LEFT JOIN image_information ON (image_information.id_image = images.id) WHERE day = '$day'");
+
+    while ($row = $sql->fetch_assoc()) {
+        echo "<div class='divImgSearch'><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Latitude : " . $row['latitude'] ."<br> Longitude :". $row['longitude'] . "<br>" . $row['username'] . "</div>";
+    }
 }

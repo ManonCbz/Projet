@@ -11,7 +11,7 @@
             <textarea name="presentationSetting"
                       id="presentationSetting"><?= $informationsUser["presentationText"] ?></textarea>
             <label for="websiteSetting">Votre site web</label>
-            <input name="websiteSetting" id="websiteSetting" placeholder="Site web, Instagram, Facebook.." type="url"
+            <input name="websiteSetting" id="websiteSetting" placeholder="Pseudo Instagram" type="text"
                    value= <?= $informationsUser["websiteValue"] ?>>
             <button type="submit">Ok</button>
         </form>

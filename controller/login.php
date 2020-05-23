@@ -6,12 +6,12 @@ require 'header.php';
 
 if (!empty($_SESSION['username'])) {
     ?>
-    <script language="Javascript">  document.location.replace("profile.php"); </script>
+    <script> document.location.replace("profile.php"); </script>
     <?php
 }
 if(!empty($_SESSION['admin'])){
     ?>
-    <script language="Javascript">  document.location.replace("admin.php"); </script>
+    <script> document.location.replace("admin.php"); </script>
     <?php
 }
 
@@ -32,7 +32,7 @@ if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) 
             getID($_SESSION['username']);
 
             ?>
-            <script language="Javascript">  document.location.replace("profile.php"); </script>
+            <script> document.location.replace("profile.php"); </script>
             <?php
         }
 
@@ -40,7 +40,7 @@ if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) 
             $_SESSION['admin'] = $_POST['username'];
 
             ?>
-            <script language="Javascript">  document.location.replace("admin.php"); </script>
+            <script> document.location.replace("admin.php"); </script>
             <?php
         }
 

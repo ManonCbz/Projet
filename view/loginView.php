@@ -1,7 +1,7 @@
 <body style="overflow: hidden">
 <div class="viewportLogParent">
 
-    <img alt="Photo" class="imageHome" src="../view/pictures/log-picture.jpg" height="100%" width="49%">
+    <img alt="Photo" class="imageHome" src="../view/pictures/homepict.jpg">
 
     <div class="viewportLog">
         <img alt="Spot photo" src="../view/pictures/log-camera.png" height="80px" width="80px">

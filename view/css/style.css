@@ -8,7 +8,7 @@ body {
 
 .viewportLogParent {
     margin: 5% 25%;
-    height: 80%;
+    height: 80vh;
     box-shadow: 5px 5px 10px grey;
 }
 
@@ -90,6 +90,11 @@ input:focus {
     text-shadow: #787878 2px 1px 2px;
 }
 
+.imageHome{
+    height: 100%;
+    width: 49%;
+}
+
 /* ================================= Header ================================= */
 
 #navbar {
@@ -121,7 +126,7 @@ input:focus {
     margin: -7px 15px;
 }
 
-#titleAdmin{
+#titleAdmin {
     font-size: 20px;
 }
 
@@ -170,7 +175,7 @@ input:focus {
 .imgDiv {
     height: 23.5vh;
     width: 11vw;
-    margin: 24px;
+    margin: 23px;
 }
 
 .imgDisplay {
@@ -187,6 +192,11 @@ input:focus {
 .settingViewport {
     display: flex;
     justify-content: center;
+}
+
+.settingViewport textarea {
+    border: thin solid gray;
+    padding: 3px;
 }
 
 .settingProfil {
@@ -341,7 +351,7 @@ h4 {
 }
 
 .categories {
-    margin-left: 4vh;
+    margin-left: 2vw;
 }
 
 /* ================================= Search Map ================================= */
@@ -368,6 +378,11 @@ h4 {
     width: 70vw;
 }
 
+#searchButton {
+    width: 20%;
+    margin: 5vh auto;
+}
+
 .searchBar {
     border: thin solid black;
     border-radius: 10px;
@@ -388,15 +403,20 @@ h4 {
 
 .searchBar input {
     width: 85%;
-    height: 100%;
+    height: 80%;
     border-radius: 10px;
     border: none;
     cursor: pointer;
     font-size: 18px;
 }
 
-#txtHint{
+#txtHint {
     display: flex;
+    flex-wrap: wrap;
+}
+
+.divImgSearch {
+    text-align: center;
 }
 
 /* ================================= Admin ================================= */
@@ -570,7 +590,7 @@ h4 {
         margin-left: 20px;
     }
 
-    #navbar p{
+    #navbar p {
         font-size: 12px;
     }
 
@@ -602,7 +622,7 @@ h4 {
     /* ================================= Profile ================================= */
     #bodyProfile {
         overflow: auto;
-        margin-bottom: 55px;
+        margin-bottom: 10vh;
     }
 
     #profileViewport {
@@ -643,7 +663,7 @@ h4 {
     /* ================================= Settings ================================= */
     .bodySetting {
         overflow: auto;
-        margin-bottom: 70px;
+        margin-bottom: 10vh;
     }
 
     h2 {
@@ -679,6 +699,10 @@ h4 {
         margin: 0 auto;
     }
 
+    .categories label {
+        font-size: 14px;
+    }
+
     .settingViewport button {
         margin: 2vh auto;
         width: 20vw;
@@ -689,7 +713,7 @@ h4 {
         width: 100%;
     }
 
-    #deleteAccount{
+    #deleteAccount {
         margin: 10vh auto;
         width: 100%;
     }
@@ -698,6 +722,7 @@ h4 {
     /* ================================= Search Map ================================= */
     #bodyMap {
         overflow: auto;
+        margin-bottom: 10vh;
     }
 
     #viewportMap {
@@ -717,9 +742,24 @@ h4 {
         border: none;
     }
 
+    .divImgSearch {
+        width: 45vw;
+    }
+
+    .categories {
+        margin-left: 1vw;
+    }
+
+    #txtHint {
+        justify-content: space-between;
+        padding-left: 4vw;
+        padding-right: 4vw;
+    }
+
     /* ================================= Add picture ================================= */
     #addPictureBody {
         overflow: auto;
+        margin-bottom: 10vh;
     }
 
     #addPictureViewport {
@@ -735,7 +775,6 @@ h4 {
         margin: 0 4vh;
     }
 
-
     #latLng {
         display: grid;
     }
@@ -749,7 +788,6 @@ h4 {
     }
 
     /* ================================= Admin ================================= */
-
     #adminBody {
         overflow: auto;
     }
@@ -791,16 +829,15 @@ h4 {
         width: auto;
     }
 
-    #buttonAdmin{
+    #buttonAdmin {
         margin-top: 6vh;
     }
 
-    #titleAdmin{
+    #titleAdmin {
         font-size: 15px;
     }
 
     /* ================================= Admin MAJ ================================= */
-
     #ownMAJ, #otherAdmin {
         border: none;
         height: auto;
@@ -816,8 +853,20 @@ h4 {
         margin-left: 8vw;
     }
 
-    #updatePasswordAdmin, #updateEmailAdmin, #addAdmin, #deleteAdmin{
+    #updatePasswordAdmin, #updateEmailAdmin, #addAdmin, #deleteAdmin {
         width: 70%;
     }
+}
+
+@media (max-height: 550px) {
+
+    .profilePresentation {
+        height: 28vh;
+    }
+
+    #addPictureBody{
+        margin-bottom: -2vh;
+    }
+
 }
 

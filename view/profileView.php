@@ -4,7 +4,7 @@
 
         <h1> <?= $_SESSION['username'] ?> </h1>
         <p><?= $informationsUser["presentationText"] ?></p>
-        <a href=" <?= $informationsUser["websiteValue"] ?> ">Mon site web</a>
+        <a href="https://www.instagram.com/<?= $informationsUser["websiteValue"] ?>/ ">Instagram</a>
 
     </div>
 
