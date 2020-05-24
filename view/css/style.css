@@ -49,6 +49,11 @@ input:focus {
     text-decoration: none;
 }
 
+.formLogRegister{
+    width: 65%;
+    margin: 0 auto;
+}
+
 .buttonLog {
     border: none;
     background: none;
@@ -419,6 +424,16 @@ h4 {
     text-align: center;
 }
 
+.instagramLink{
+    text-decoration: overline;
+    cursor: pointer;
+    color: #854cc3;
+}
+
+.instagramLink:hover{
+    color: #bab5bf;
+}
+
 /* ================================= Admin ================================= */
 
 #adminBody {
@@ -581,6 +596,10 @@ h4 {
         width: 70vw;
     }
 
+    .formLogRegister{
+        width: 90%;
+    }
+
     /* ================================= Header ================================= */
     .linkNavbar {
         display: none;
@@ -613,10 +632,6 @@ h4 {
 
     #navbarFooter img {
         height: 25px;
-    }
-
-    #designFooter {
-        display: none;
     }
 
     /* ================================= Profile ================================= */
@@ -744,6 +759,7 @@ h4 {
 
     .divImgSearch {
         width: 45vw;
+        margin-bottom: 5vh;
     }
 
     .categories {

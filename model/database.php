@@ -237,7 +237,7 @@ function searchImage($lat, $lng)
     $tableau = array();
 
     while ($row = $sql->fetch_assoc()) {
-        echo "<div class='divImgSearch'><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Latitude : " . $row['latitude'] ."<br> Longitude :". $row['longitude'] . "<br>" . $row['username'] . "</div>";
+        echo "<div class='divImgSearch'><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Latitude : " . $row['latitude'] ."<br> Longitude :". $row['longitude'] . "<br>" . $row['username'] . "<br><a class='instagramLink' target='_blank' href=\"https://www.instagram.com/". $row['website'] . "/\">Instagram</a></div>";
         $tableau[] = $row['img_name'] . $row['latitude'] . $row['longitude'] . $row['username'] . $row['presentation'] . $row['website'];
     }
 
@@ -253,7 +253,7 @@ function displayImageSearch()
 ");
 
     while ($row = $sql->fetch_assoc()) {
-        echo "<div class='divImgSearch'><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Latitude : " . $row['latitude'] ."<br> Longitude :". $row['longitude'] . "<br>" . $row['username'] . "</div>";
+        echo "<div class='divImgSearch'><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Latitude : " . $row['latitude'] ."<br> Longitude :". $row['longitude'] . "<br>" . $row['username'] . "<br><a class='instagramLink' target='_blank' href=\"https://www.instagram.com/". $row['website'] . "/\">Instagram</a></div>";
     }
 }
 
@@ -264,6 +264,6 @@ function displayImageSearchCat($day)
     $sql = $conn->query("SELECT * FROM images LEFT JOIN users ON (users.id = images.id_user) LEFT JOIN user_information ON (user_information.id_user = users.id) LEFT JOIN image_information ON (image_information.id_image = images.id) WHERE day = '$day'");
 
     while ($row = $sql->fetch_assoc()) {
-        echo "<div class='divImgSearch'><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Latitude : " . $row['latitude'] ."<br> Longitude :". $row['longitude'] . "<br>" . $row['username'] . "</div>";
+        echo "<div class='divImgSearch'><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Latitude : " . $row['latitude'] ."<br> Longitude :". $row['longitude'] . "<br>" . $row['username'] . "<br><a class='instagramLink' target='_blank' href=\"https://www.instagram.com/". $row['website'] . "/\">Instagram</a></div>";
     }
 }

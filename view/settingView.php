@@ -10,7 +10,7 @@
             <label for="presentationSetting">Présentation</label>
             <textarea name="presentationSetting"
                       id="presentationSetting"><?= $informationsUser["presentationText"] ?></textarea>
-            <label for="websiteSetting">Votre site web</label>
+            <label for="websiteSetting">Votre instagram :</label>
             <input name="websiteSetting" id="websiteSetting" placeholder="Pseudo Instagram" type="text"
                    value= <?= $informationsUser["websiteValue"] ?>>
             <button type="submit">Ok</button>
