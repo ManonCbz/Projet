@@ -17,9 +17,9 @@ if (!empty($_SESSION['admin'])){
 $newEmailPlaceholder1 = "Nouvelle adresse email";
 $newEmailPlaceholder2 = "Confirmez votre adresse email";
 
-// Changement informations
+// Changement informations (presentation / site web)
 
-if (!empty($_POST['presentationSetting']) || !empty($_POST['presentationSetting'])){
+if (!empty($_POST['presentationSetting'])){
     updateInformations($_POST['presentationSetting'], $_POST['websiteSetting'], $_SESSION['userID']);
 }
 
@@ -27,11 +27,15 @@ if (!empty($_POST['presentationSetting']) || !empty($_POST['presentationSetting'
 
 if(!empty($_POST['newEmail']) && $_POST['newEmail'] == $_POST['newEmailConf']){
 
+    // Vérifie si l'adresse email est déjà utilisée
+
     $stmt = $conn->prepare('SELECT id FROM users WHERE email = ?');
     $stmt->bind_param("s", $_POST['newEmail']);
     $stmt->execute();
     $mail = $stmt->get_result()->fetch_assoc();
     $stmt->close();
+
+    // Si c'est le cas : (change le placeholder et le css)
 
     if ($mail) {
         $newEmailPlaceholder1 = 'Cet email est déjà utilisé';
@@ -46,6 +50,7 @@ if(!empty($_POST['newEmail']) && $_POST['newEmail'] == $_POST['newEmailConf']){
         <?php
     }
     else{
+        // Sinon met à jour l'adresse email
     updateEmail($_POST['newEmail'], $_SESSION['userID']);
     }
 }

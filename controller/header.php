@@ -1,11 +1,10 @@
 <?php
 
-include '../model/database.php';
-
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+include '../model/database.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -46,9 +45,6 @@ if (session_status() == PHP_SESSION_NONE) {
             <p id="titleAdmin">Espace administrateur</p>
 
             <div class="iconNavbar">
-                <a href="admin.php"><img class="iconNavbar" src="../view/pictures/picture%20(1).png"></a>
-                <a href="adminMAJ.php"><img class="iconNavbar" title="Paramètres" alt="Gestion"
-                                            src="../view/pictures/icon-settings.png"></a>
                 <a href="logout.php"><img class="iconNavbar" title="Se déconnecter" alt="Se déconnecter"
                                           src="../view/pictures/icon-logout.png"></a>
             </div>
