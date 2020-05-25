@@ -50,6 +50,7 @@
     }
     else{
         displayImageSearch();
+        allImageJSON();
     }
     ?>
 </div>

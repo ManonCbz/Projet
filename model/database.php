@@ -2,12 +2,12 @@
 
 // Connexion à la base de donnée //
 
-$conn = new Mysqli ("localhost", "id13800576_manon", "rpQd#POqW5s_0VEH");
+$conn = new Mysqli ("localhost", "root", "");
 
 if ($conn->connect_error) {
     echo $conn->connect_error;
 } else {
-    $conn->select_db("id13800576_projetspot");
+    $conn->select_db("project-spot");
 }
 
 // =========================================== Function =========================================== //
@@ -234,15 +234,9 @@ function searchImage($lat, $lng)
 
     $sql = $conn->query("SELECT * FROM `images` LEFT JOIN users ON (users.id = images.id_user) LEFT JOIN user_information ON (user_information.id_user = users.id) LEFT JOIN image_information ON (image_information.id_image = images.id)  WHERE `latitude` BETWEEN $latMin AND $latMax AND `longitude` BETWEEN $lngMin AND $lngMax");
 
-    $tableau = array();
-
     while ($row = $sql->fetch_assoc()) {
         echo "<div class='divImgSearch'><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Latitude : " . $row['latitude'] ."<br> Longitude :". $row['longitude'] . "<br>" . $row['username'] . "<br><a class='instagramLink' target='_blank' href=\"https://www.instagram.com/". $row['website'] . "/\">Instagram</a></div>";
-        $tableau[] = $row['img_name'] . $row['latitude'] . $row['longitude'] . $row['username'] . $row['presentation'] . $row['website'];
     }
-
-    // On a notre $tableau au-dessus, on va l'afficher, traduit en JSON
-    echo json_encode($tableau);
 }
 
 function displayImageSearch()
@@ -265,5 +259,24 @@ function displayImageSearchCat($day)
 
     while ($row = $sql->fetch_assoc()) {
         echo "<div class='divImgSearch'><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Latitude : " . $row['latitude'] ."<br> Longitude :". $row['longitude'] . "<br>" . $row['username'] . "<br><a class='instagramLink' target='_blank' href=\"https://www.instagram.com/". $row['website'] . "/\">Instagram</a></div>";
+    }
+}
+
+function allImageJSON(){
+    global $conn;
+
+    $sql = $conn->query("SELECT * FROM `images` LEFT JOIN users ON (users.id = images.id_user) LEFT JOIN user_information ON (user_information.id_user = users.id) LEFT JOIN image_information ON (image_information.id_image = images.id)");
+
+    $data = array();
+
+    while ($row = $sql->fetch_assoc()) {
+        $data["name"] = $row['username'];
+        $data["presentation"] = $row['presentation'];
+        $data['website'] = $row['website'];
+        $data['image-name'] = $row['img_name'];
+        $data['latitude'] = $row['latitude'];
+        $data['longitude'] = $row['longitude'];
+
+        json_encode($data);
     }
 }
