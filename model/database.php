@@ -11,6 +11,15 @@ if ($conn->connect_error) {
 }
 
 // =========================================== Function =========================================== //
+// 1 - INSERT / CREATE
+// 2 - GET & DISPLAY INFO
+// 3 - UPDATE
+// 4 - DELETE
+// 5 - ADMIN
+// 6 - JSON
+
+// =========================================== INSERT / CREATE =========================================== //
+
 
 function createAccount($username, $email, $password)
 {
@@ -36,7 +45,33 @@ function createInformation($username)
     $stmt->execute();
 }
 
-// ===========================================  Get  =========================================== //
+function addPicture($id, $latitude, $longitude, $city, $countryside, $sea, $mountain, $day)
+{
+    global $conn;
+    // Ajout de la date au nom de l'image
+    $img_name = date("YmdHis") . $_FILES['image']['name'];
+
+    // Envoi infos image DB
+    $stmt = $conn->prepare('INSERT INTO images (id_user, img_name, latitude, longitude) VALUES (?, ?, ?, ?)');
+    $stmt->bind_param("isdd", $id, $img_name, $latitude, $longitude);
+    $stmt->execute();
+    $stmt->close();
+
+    //Recupere ID image
+    $sql = $conn->query("SELECT * FROM images WHERE img_name = '$img_name'");
+    $row = $sql->fetch_assoc();
+
+    // Crée info image
+    $stmt2 = $conn->prepare('INSERT INTO image_information (id_user, id_image, city, countryside, sea, mountain, day) VALUES (?, ?, ?, ?, ?, ?, ?)');
+    $stmt2->bind_param("iiiiiis", $id, $row['id'], $city, $countryside, $sea, $mountain, $day);
+    $stmt2->execute();
+    $stmt2->close();
+
+    // Déplace image telechargée
+    move_uploaded_file($_FILES['image']['tmp_name'], '../view/upload/' . $img_name);
+}
+
+// ===========================================  GET & DISPLAY INFO =========================================== //
 
 function getID($username)
 {
@@ -45,6 +80,7 @@ function getID($username)
     $sql = 'SELECT id FROM users WHERE username = \'' . $username . '\'';
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
+    // Ajoute variable de session id
     $_SESSION['userID'] = $row['id'];
 }
 
@@ -58,6 +94,7 @@ function getLog($username)
     $user = $stmt->get_result()->fetch_assoc();
     $stmt->close();
 
+    // Pour log.php & setting.php (vérif mdp)
     return $user;
 }
 
@@ -69,10 +106,34 @@ function getInformations($id)
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
 
+    // Pour profile.php & setting.php (renvoi les informations)
     return array("presentationText" => $row['presentation'], "websiteValue" => $row['website']);
 }
 
-// ===========================================  Update  =========================================== //
+
+function displayPicture($id)
+{
+    global $conn;
+
+    $sql = $conn->query("SELECT * FROM images WHERE id_user = " . $id);
+
+    while ($row = $sql->fetch_assoc()) {
+        echo "<img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'>";
+    }
+}
+
+function displayImageSearchCat($day)
+{
+    global $conn;
+
+    $sql = $conn->query("SELECT * FROM images LEFT JOIN users ON (users.id = images.id_user) LEFT JOIN user_information ON (user_information.id_user = users.id) LEFT JOIN image_information ON (image_information.id_image = images.id) WHERE day = '$day'");
+
+    while ($row = $sql->fetch_assoc()) {
+        echo "<div class='divImgSearch'><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Latitude : " . $row['latitude'] ."<br> Longitude : ". $row['longitude'] . "<br>" . $row['username'] . "<br><a class='instagramLink' target='_blank' href=\"https://www.instagram.com/". $row['website'] . "/\">Instagram</a></div>";
+    }
+}
+
+// ===============================================  UPDATE  =============================================== //
 
 function updateInformations($presentation, $website, $id)
 {
@@ -94,43 +155,7 @@ function updateEmail($newEmail, $id)
     $stmt->close();
 }
 
-// ===========================================  Display  =========================================== //
-
-function addPicture($id, $latitude, $longitude, $city, $countryside, $sea, $mountain, $day)
-{
-    global $conn;
-    $img_name = date("YmdHis") . $_FILES['image']['name'];
-
-    $stmt = $conn->prepare('INSERT INTO images (id_user, img_name, latitude, longitude) VALUES (?, ?, ?, ?)');
-    $stmt->bind_param("isdd", $id, $img_name, $latitude, $longitude);
-    $stmt->execute();
-    $stmt->close();
-
-    $sql = $conn->query("SELECT * FROM images WHERE img_name = '$img_name'");
-    $row = $sql->fetch_assoc();
-
-
-    $stmt2 = $conn->prepare('INSERT INTO image_information (id_user, id_image, city, countryside, sea, mountain, day) VALUES (?, ?, ?, ?, ?, ?, ?)');
-    $stmt2->bind_param("iiiiiis", $id, $row['id'], $city, $countryside, $sea, $mountain, $day);
-    $stmt2->execute();
-    $stmt2->close();
-
-    move_uploaded_file($_FILES['image']['tmp_name'], '../view/upload/' . $img_name);
-}
-
-function displayPicture($id)
-{
-    global $conn;
-
-    $sql = $conn->query("SELECT * FROM images WHERE id_user = " . $id);
-
-    while ($row = $sql->fetch_assoc()) {
-        echo "<img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'>";
-    }
-}
-
-
-// ===========================================  Delete  =========================================== //
+// ================================================  DELETE  ================================================ //
 
 function deleteAccount($id)
 {
@@ -160,9 +185,9 @@ function deletePictures($id)
     $sql3->close();
 }
 
-// ===========================================  Admin  =========================================== //
+// ================================================  ADMIN  ================================================ //
 
-function getAllImages()
+function getAllImagesAdmin()
 {
     global $conn;
 
@@ -210,73 +235,28 @@ function deleteImageAdmin($idImage)
     $conn->query("DELETE FROM image_information WHERE id_image = $idImage");
 }
 
-//
 
-function addAdminAccount($email)
-{
-    global $conn;
-
-    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
-    $stmt->bind_param('s', $email);
-    $stmt->execute();
-
-}
-
-
-function searchImage($lat, $lng)
-{
-    global $conn;
-
-    $latMin = $lat - 0.02;
-    $latMax = $lat + 0.02;
-    $lngMin = $lng - 0.1;
-    $lngMax = $lng + 0.1;
-
-    $sql = $conn->query("SELECT * FROM `images` LEFT JOIN users ON (users.id = images.id_user) LEFT JOIN user_information ON (user_information.id_user = users.id) LEFT JOIN image_information ON (image_information.id_image = images.id)  WHERE `latitude` BETWEEN $latMin AND $latMax AND `longitude` BETWEEN $lngMin AND $lngMax");
-
-    while ($row = $sql->fetch_assoc()) {
-        echo "<div class='divImgSearch'><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Latitude : " . $row['latitude'] ."<br> Longitude :". $row['longitude'] . "<br>" . $row['username'] . "<br><a class='instagramLink' target='_blank' href=\"https://www.instagram.com/". $row['website'] . "/\">Instagram</a></div>";
-    }
-}
-
-function displayImageSearch()
-{
-    global $conn;
-
-    $sql = $conn->query("SELECT * FROM images LEFT JOIN users ON (users.id = images.id_user) LEFT JOIN user_information ON (user_information.id_user = users.id) LEFT JOIN image_information ON (image_information.id_image = images.id) 
-");
-
-    while ($row = $sql->fetch_assoc()) {
-        echo "<div class='divImgSearch'><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Latitude : " . $row['latitude'] ."<br> Longitude :". $row['longitude'] . "<br>" . $row['username'] . "<br><a class='instagramLink' target='_blank' href=\"https://www.instagram.com/". $row['website'] . "/\">Instagram</a></div>";
-    }
-}
-
-function displayImageSearchCat($day)
-{
-    global $conn;
-
-    $sql = $conn->query("SELECT * FROM images LEFT JOIN users ON (users.id = images.id_user) LEFT JOIN user_information ON (user_information.id_user = users.id) LEFT JOIN image_information ON (image_information.id_image = images.id) WHERE day = '$day'");
-
-    while ($row = $sql->fetch_assoc()) {
-        echo "<div class='divImgSearch'><img class='imgDiv' src='../view/upload/" . $row['img_name'] . "'><br> Latitude : " . $row['latitude'] ."<br> Longitude :". $row['longitude'] . "<br>" . $row['username'] . "<br><a class='instagramLink' target='_blank' href=\"https://www.instagram.com/". $row['website'] . "/\">Instagram</a></div>";
-    }
-}
+// =================================================  JSON  ================================================= //
 
 function allImageJSON(){
     global $conn;
 
     $sql = $conn->query("SELECT * FROM `images` LEFT JOIN users ON (users.id = images.id_user) LEFT JOIN user_information ON (user_information.id_user = users.id) LEFT JOIN image_information ON (image_information.id_image = images.id)");
 
+    $general = array();
     $data = array();
+    $array = array();
 
     while ($row = $sql->fetch_assoc()) {
         $data["name"] = $row['username'];
         $data["presentation"] = $row['presentation'];
         $data['website'] = $row['website'];
-        $data['image-name'] = $row['img_name'];
+        $data['imagename'] = $row['img_name'];
         $data['latitude'] = $row['latitude'];
         $data['longitude'] = $row['longitude'];
 
-        json_encode($data);
+        $general[] = $data;
     }
+    $array['infos'] = $general;
+    echo json_encode($array);
 }

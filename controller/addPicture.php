@@ -51,6 +51,8 @@ if (!empty($_POST)) {
         <?php
     }
 
+    // Si la checkbox est vide
+
     if(empty($_POST['day'])){
         $errors++;
         ?>
@@ -62,12 +64,16 @@ if (!empty($_POST)) {
         <?php
     }
 
+    // ================= Pas d'erreur ================= //
+
     if ($errors === 0) {
 
         $city = 0;
         $countryside = 0;
         $sea = 0;
         $mountain = 0;
+
+        // input vide = 0, coché = 1
 
         if(isset($_POST['placeCity'])){
             $city = 1;
@@ -85,6 +91,7 @@ if (!empty($_POST)) {
 
         addPicture($_SESSION['userID'], $_POST['latitude'], $_POST['longitude'], $city, $countryside, $sea, $mountain, $_POST['day']);
 
+        // Redirection sur le profil
         ?>
         <script> document.location.replace("profile.php"); </script>
         <?php

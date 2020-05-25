@@ -14,6 +14,7 @@ if (!empty($_SESSION['admin'])){
     <?php
 }
 
+// Recupere & affiche les informations de l'utilisateur (profileView.php)
 
 $informationsUser = getInformations($_SESSION['userID']);
 

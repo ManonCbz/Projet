@@ -48,10 +48,6 @@
     if (isset($_POST['day'])){
         displayImageSearchCat($_POST['day']);
     }
-    else{
-        displayImageSearch();
-        allImageJSON();
-    }
     ?>
 </div>
 <script src="../view/js/api.js"></script>

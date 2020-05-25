@@ -28,7 +28,7 @@ include '../model/database.php';
                 <a href="search.php">Rechercher</a>
                 <a href="addPicture.php">Ajouter une photo</a>
             </div>
-            <div class="iconNavbar">
+            <div>
                 <a href="setting.php"><img class="iconNavbar" title="Paramètres" alt="Paramètres"
                                            src="../view/pictures/icon-settings.png"></a>
                 <a href="logout.php"><img class="iconNavbar" title="Se déconnecter" alt="Se déconnecter"

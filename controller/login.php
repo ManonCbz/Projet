@@ -15,20 +15,22 @@ if(!empty($_SESSION['admin'])){
     <?php
 }
 
-
 $usernamePlaceholder = "Pseudo";
 $passwordPlaceholder = "Mot de passe";
 
+
 if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) {
 
+    // Recupere informations de connexion
     $user = getLog($_POST['username']);
 
     if ($user && password_verify($_POST['password'], $user['password'])) {
 
-
+        // Utilisateur
         if($user['type'] == 0){
             $_SESSION['username'] = $_POST['username'];
 
+            // Récupere et crée variable de session id
             getID($_SESSION['username']);
 
             ?>
@@ -36,6 +38,7 @@ if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) 
             <?php
         }
 
+        // Administrateur
         if($user['type'] == 1){
             $_SESSION['admin'] = $_POST['username'];
 

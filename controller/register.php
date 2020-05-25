@@ -27,7 +27,7 @@ if (!empty($_POST)) {
 
     // =========================================== Erreurs Formulaire =========================================== //
 
-    // Je crée un tableau pour contenir les erreurs possible dans le formulaire
+    // Tableau pour contenir les erreurs possible dans le formulaire
 
     $errors = array();
 
@@ -195,7 +195,6 @@ if (!empty($_POST)) {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-
 
         $_SESSION['username'] = $username;
 

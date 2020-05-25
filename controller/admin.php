@@ -10,18 +10,18 @@ if (empty($_SESSION['admin'])) {
     <?php
 }
 
+// Recupere & affiche les informations des photos publiées (adminView.php)
+$picture = getAllImagesAdmin();
 
-$picture = getAllImages();
-
-// Validation de la photo :
 
 if(isset($_POST['accept'])){
+    // Valide la photo
     validateImageAdmin($_SESSION['imageID']);
 }
 
-// Refus de la photo :
 
 if(isset($_POST['delete'])){
+    // Supprime la photo & infos
     deleteImageAdmin($_SESSION['imageID']);
 }
 

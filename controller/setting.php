@@ -17,7 +17,7 @@ if (!empty($_SESSION['admin'])){
 $newEmailPlaceholder1 = "Nouvelle adresse email";
 $newEmailPlaceholder2 = "Confirmez votre adresse email";
 
-// Changement informations (presentation / site web)
+// Changement informations (presentation & site web)
 
 if (!empty($_POST['presentationSetting'])){
     updateInformations($_POST['presentationSetting'], $_POST['websiteSetting'], $_SESSION['userID']);
@@ -25,7 +25,7 @@ if (!empty($_POST['presentationSetting'])){
 
 // Changement Email
 
-if(!empty($_POST['newEmail']) && $_POST['newEmail'] == $_POST['newEmailConf']){
+if(!empty($_POST['newEmail']) && $_POST['newEmail'] === $_POST['newEmailConf']){
 
     // Vérifie si l'adresse email est déjà utilisée
 
@@ -55,6 +55,8 @@ if(!empty($_POST['newEmail']) && $_POST['newEmail'] == $_POST['newEmailConf']){
     }
 }
 
+// Si l'email est différent de sa confirmation
+
 if(!empty($_POST['newEmail']) && $_POST['newEmail'] !== $_POST['newEmailConf']){
     $newEmailPlaceholder1 = "L'adresse email ne correspond pas";
     $newEmailPlaceholder2 = "L'adresse email ne correspond pas";
@@ -67,6 +69,7 @@ if(!empty($_POST['newEmail']) && $_POST['newEmail'] !== $_POST['newEmailConf']){
     </style><?php
 }
 
+// Recupere & Affiche les informations dans le input (settingView)
 $informationsUser = getInformations($_SESSION['userID']);
 
 // Suppression de compte
@@ -83,9 +86,7 @@ if(!empty($_POST['password']) && $_POST['password'] == $_POST['confPassword']){
         $id = $_SESSION['userID'];
 
         deleteAccount($id);
-
         deleteInformations($id);
-
         deletePictures($id);
 
         session_destroy();
