@@ -200,13 +200,14 @@ function getAllImagesAdmin()
         ?>
         <style>
             #controle p {
+                /* Enleve le bloc "Toutes les photos sont mises à jour" */
                 display: none;
             }
-
+                /* Affiche le bloc qui contiendra la photo */
             .imgDivAdmin {
                 display: block;
             }
-
+                /* Affiche le bloc de description de la photo */
             .adminInformationImage {
                 display: block;
             }

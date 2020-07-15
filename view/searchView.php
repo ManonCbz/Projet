@@ -45,12 +45,13 @@
 </div>
 <div id="txtHint">
     <?php
-    if (isset($_POST['day'])){
+    if (isset($_POST['day'])) {
         displayImageSearchCat($_POST['day']);
     }
     ?>
 </div>
+<?= $apiKey = "" ?>
 <script src="../view/js/api.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBed8EKQPvtUtM51QKAJoCmu1cMtjq2l08&libraries=places&callback=initMap"
+<script src="https://maps.googleapis.com/maps/api/js?key=<?= $apiKey ?>&libraries=places&callback=initMap"
         async defer></script>
 </body>
